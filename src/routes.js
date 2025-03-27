@@ -21,7 +21,7 @@
 */
 
 // Layouts
-import Kudu from 'layouts/dashboards/kudu'
+import Kudu from 'pages/kudu'
 
 // @mui icons
 import Icon from '@mui/material/Icon'
@@ -36,7 +36,7 @@ const routes = [
       {
         name: 'Kudu',
         key: 'kudu',
-        route: '/dashboards/kudu',
+        route: '/kudu',
         component: <Kudu />,
       },
     ],
