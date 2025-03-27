@@ -132,27 +132,26 @@ export default function App() {
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
 
-      <Sidenav
-        color={sidenavColor}
-        brand={
-          (transparentSidenav && !darkMode) || whiteSidenav
-            ? brandDark
-            : brandWhite
-        }
-        brandName='Kudu Cloud'
-        routes={routes}
-        onMouseEnter={handleOnMouseEnter}
-        onMouseLeave={handleOnMouseLeave}
-      />
-      <Configurator />
-      {configsButton}
-
       <Routes>
         {/* Agrupar rutas del dashboard dentro del DashboardLayout */}
         <Route
           path='/dashboards/*'
           element={
             <DashboardLayout>
+              <Sidenav
+                color={sidenavColor}
+                brand={
+                  (transparentSidenav && !darkMode) || whiteSidenav
+                    ? brandDark
+                    : brandWhite
+                }
+                brandName='Kudu Cloud'
+                routes={routes}
+                onMouseEnter={handleOnMouseEnter}
+                onMouseLeave={handleOnMouseLeave}
+              />
+              <Configurator />
+              {configsButton}
               <Routes>{getRoutes(routes)}</Routes>
             </DashboardLayout>
           }
