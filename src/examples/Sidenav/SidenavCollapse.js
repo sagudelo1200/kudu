@@ -36,7 +36,7 @@ import {
 } from 'examples/Sidenav/styles/sidenavCollapse'
 
 // Material Dashboard 3 PRO React context
-import { useMaterialUIController } from 'context'
+import { useMaterialUIController } from 'contexts'
 
 function SidenavCollapse({
   icon,

@@ -13,7 +13,7 @@ import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 import Footer from 'examples/Footer'
 
 // Material Dashboard 3 PRO React context
-import { useMaterialUIController, setLayout } from 'context'
+import { useMaterialUIController, setLayout } from 'contexts'
 
 function DashboardLayout({ children }) {
   const [controller, dispatch] = useMaterialUIController()

@@ -33,7 +33,7 @@ import {
 } from 'examples/Sidenav/styles/sidenavItem'
 
 // Material Dashboard 3 PRO React contexts
-import { useMaterialUIController } from 'context'
+import { useMaterialUIController } from 'contexts'
 
 function SidenavItem({
   color = 'info',

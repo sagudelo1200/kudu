@@ -46,7 +46,7 @@ import {
   setMiniSidenav,
   setTransparentSidenav,
   setWhiteSidenav,
-} from 'context'
+} from 'contexts'
 
 function Sidenav({ color = 'info', brand = '', brandName, routes, ...rest }) {
   const [openCollapse, setOpenCollapse] = useState(false)

@@ -4,7 +4,7 @@ import { HashRouter } from 'react-router-dom'
 import App from 'App'
 
 // Material Dashboard 3 PRO React Context Provider
-import { MaterialUIControllerProvider } from 'context'
+import { MaterialUIControllerProvider } from 'contexts'
 
 const container = document.getElementById('app')
 const root = createRoot(container)

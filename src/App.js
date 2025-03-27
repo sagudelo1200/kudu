@@ -31,7 +31,7 @@ import {
   useMaterialUIController,
   setMiniSidenav,
   setOpenConfigurator,
-} from 'context'
+} from 'contexts'
 
 // Images
 import brandWhite from 'assets/images/logo-ct.png'
