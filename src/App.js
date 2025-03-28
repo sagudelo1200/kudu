@@ -42,14 +42,12 @@ export default function App() {
   const {
     miniSidenav,
     direction,
-    layout,
     openConfigurator,
     sidenavColor,
     transparentSidenav,
     whiteSidenav,
     darkMode,
   } = controller
-  console.log(layout)
   const [onMouseEnter, setOnMouseEnter] = useState(false)
   const { pathname } = useLocation()
 
