@@ -42,6 +42,7 @@ function DashboardLayout({ children }) {
     >
       <DashboardNavbar />
       {children}
+      <br />
       <Footer />
     </MDBox>
   )

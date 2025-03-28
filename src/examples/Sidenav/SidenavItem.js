@@ -106,13 +106,13 @@ function SidenavItem({
 // Typechecking props for the SidenavItem
 SidenavItem.propTypes = {
   color: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'info',
-    'success',
-    'warning',
-    'error',
-    'dark',
+    'familia',
+    'manada',
+    'aldea',
+    'scouts',
+    'sociedad',
+    'clan',
+    'omms',
   ]),
   name: PropTypes.string.isRequired,
   active: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),

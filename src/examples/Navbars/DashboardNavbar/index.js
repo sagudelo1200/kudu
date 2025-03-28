@@ -30,7 +30,6 @@ import Icon from '@mui/material/Icon'
 
 // Material Dashboard 3 PRO React components
 import MDBox from 'components/MDBox'
-import MDInput from 'components/MDInput'
 import MDBadge from 'components/MDBadge'
 
 // Material Dashboard 3 PRO React examples
@@ -168,9 +167,9 @@ function DashboardNavbar({ absolute = false, light = false, isMini = false }) {
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <MDBox pr={1}>
+            {/* <MDBox pr={1}>
               <MDInput label='Buscar...' />
-            </MDBox>
+            </MDBox> */}
             <MDBox color={light ? 'white' : 'inherit'}>
               <Link to=''>
                 <IconButton sx={navbarIconButton} size='small' disableRipple>

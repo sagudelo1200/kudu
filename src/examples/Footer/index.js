@@ -66,7 +66,7 @@ function Footer({
         fontSize={size.sm}
         px={1.5}
       >
-        &copy; {new Date().getFullYear()} - Hecho con
+        {new Date().getFullYear()} &copy; Hecho con
         <MDBox fontSize={size.md} color='text' mb={-0.5} mx={0.25}>
           <Icon color='error' fontSize='inherit'>
             favorite
