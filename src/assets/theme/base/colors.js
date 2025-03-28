@@ -96,6 +96,36 @@ const colors = {
     900: '#171717',
   },
 
+  familia: {
+    main: '#93BFE7',
+    focus: '#7faed6',
+  },
+
+  manada: {
+    main: '#FFCE00',
+    focus: '#d8ae04',
+  },
+
+  aldea: {
+    main: '#C89C66',
+    focus: '#b48b56',
+  },
+
+  scouts: {
+    main: '#17C66E',
+    focus: '#14b362',
+  },
+
+  sociedad: {
+    main: '#1646B2',
+    focus: '#133b9d',
+  },
+
+  clan: {
+    main: '#D71918',
+    focus: '#c31616',
+  },
+
   gradients: {
     primary: {
       main: '#EC407A',
@@ -135,6 +165,36 @@ const colors = {
     dark: {
       main: '#42424a',
       state: '#191919',
+    },
+
+    familia: {
+      main: '#93BFE7',
+      state: '#7faed6',
+    },
+
+    manada: {
+      main: '#FFCE00',
+      state: '#d8ae04',
+    },
+
+    aldea: {
+      main: '#C89C66',
+      state: '#b48b56',
+    },
+
+    scouts: {
+      main: '#17C66E',
+      state: '#14b362',
+    },
+
+    sociedad: {
+      main: '#1646B2',
+      state: '#133b9d',
+    },
+
+    clan: {
+      main: '#D71918',
+      state: '#c31616',
     },
   },
 
@@ -240,6 +300,36 @@ const colors = {
       background: '#8097bf',
       text: '#1e2e4a',
     },
+
+    familia: {
+      background: '#c9e0f6',
+      text: '#2f6ba7',
+    },
+
+    manada: {
+      background: '#ffebcc',
+      text: '#b36b00',
+    },
+
+    aldea: {
+      background: '#f4e1c2',
+      text: '#8b5a2b',
+    },
+
+    scouts: {
+      background: '#c8f0d4',
+      text: '#0f9d58',
+    },
+
+    sociedad: {
+      background: '#c9d3f6',
+      text: '#2f6ba7',
+    },
+
+    clan: {
+      background: '#f5c4c4',
+      text: '#b30000',
+    },
   },
 
   coloredShadows: {
@@ -251,6 +341,12 @@ const colors = {
     error: '#f44336',
     light: '#adb5bd',
     dark: '#404040',
+    familia: '#93BFE7',
+    manada: '#FFCE00',
+    aldea: '#C89C66',
+    scouts: '#17C66E',
+    sociedad: '#1646B2',
+    clan: '#D71918',
   },
 
   inputBorderColor: '#d2d6da',

@@ -54,12 +54,13 @@ function Configurator() {
   } = controller
   const [disabled, setDisabled] = useState(false)
   const sidenavColors = [
-    'primary',
+    'familia',
+    'manada',
+    'aldea',
+    'scouts',
+    'sociedad',
+    'clan',
     'dark',
-    'info',
-    'success',
-    'warning',
-    'error',
   ]
 
   // Use the useEffect hook to change the button state for the sidenav type based on window size.

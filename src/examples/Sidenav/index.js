@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 3 PRO React - v2.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect, useState } from 'react'
 
 // react-router-dom components
@@ -48,7 +33,7 @@ import {
   setWhiteSidenav,
 } from 'contexts'
 
-function Sidenav({ color = 'info', brand = '', brandName, routes, ...rest }) {
+function Sidenav({ color = 'dark', brand = '', brandName, routes, ...rest }) {
   const [openCollapse, setOpenCollapse] = useState(false)
   const [openNestedCollapse, setOpenNestedCollapse] = useState(false)
   const [controller, dispatch] = useMaterialUIController()
@@ -306,12 +291,12 @@ function Sidenav({ color = 'info', brand = '', brandName, routes, ...rest }) {
 // Typechecking props for the Sidenav
 Sidenav.propTypes = {
   color: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'info',
-    'success',
-    'warning',
-    'error',
+    'familia',
+    'manada',
+    'aldea',
+    'scouts',
+    'sociedad',
+    'clan',
     'dark',
   ]),
   brand: PropTypes.string,
