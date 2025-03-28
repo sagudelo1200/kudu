@@ -33,7 +33,7 @@ import {
   setWhiteSidenav,
 } from 'contexts'
 
-function Sidenav({ color = 'dark', brand = '', brandName, routes, ...rest }) {
+function Sidenav({ color = 'omms', brand = '', brandName, routes, ...rest }) {
   const [openCollapse, setOpenCollapse] = useState(false)
   const [openNestedCollapse, setOpenNestedCollapse] = useState(false)
   const [controller, dispatch] = useMaterialUIController()
@@ -297,7 +297,7 @@ Sidenav.propTypes = {
     'scouts',
     'sociedad',
     'clan',
-    'dark',
+    'omms',
   ]),
   brand: PropTypes.string,
   brandName: PropTypes.string.isRequired,

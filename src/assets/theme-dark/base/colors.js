@@ -128,6 +128,11 @@ const colors = {
     focus: '#c31616',
   },
 
+  omms: {
+    main: '#4d006e',
+    focus: '#3f0059',
+  },
+
   gradients: {
     primary: {
       main: '#EC407A',
@@ -197,6 +202,11 @@ const colors = {
     clan: {
       main: '#D71918',
       state: '#c31616',
+    },
+
+    omms: {
+      main: '#4d006e',
+      state: '#3f0059',
     },
   },
 
@@ -332,6 +342,11 @@ const colors = {
       background: '#f5c4c4',
       text: '#b30000',
     },
+
+    omms: {
+      background: '#f0d6f1',
+      text: '#6a1e5a',
+    },
   },
 
   coloredShadows: {
@@ -349,6 +364,7 @@ const colors = {
     scouts: '#17C66E',
     sociedad: '#1646B2',
     clan: '#D71918',
+    omms: '#4d006e',
   },
 
   inputBorderColor: '#d2d6da',

@@ -60,7 +60,7 @@ function Configurator() {
     'scouts',
     'sociedad',
     'clan',
-    'dark',
+    'omms',
   ]
 
   // Use the useEffect hook to change the button state for the sidenav type based on window size.
