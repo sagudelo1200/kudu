@@ -25,9 +25,6 @@ function DashboardLayout({ children }) {
     // eslint-disable-next-line
   }, [pathname])
 
-  console.log(children)
-  console.log(children.props)
-
   return (
     <MDBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
