@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/kudu-cloud/static/js/main.18662ebd.js",
+    "static/media/logo-ct-dark.png": "/kudu-cloud/static/media/logo-ct-dark.ee549019e8609bf7447e.png",
+    "static/media/logo-ct.png": "/kudu-cloud/static/media/logo-ct.ee549019e8609bf7447e.png",
+    "index.html": "/kudu-cloud/index.html",
+    "main.18662ebd.js.map": "/kudu-cloud/static/js/main.18662ebd.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.18662ebd.js"
+  ]
+}
