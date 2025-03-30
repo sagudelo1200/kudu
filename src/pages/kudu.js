@@ -14,13 +14,13 @@ function Kudu() {
         justifyContent={'center'}
         alignItems={'center'}
       >
-        <Grid item xs={9}>
+        <Grid item xs={12} md={10} lg={9}>
           <MDTypography variant='h1'>Kudu Cloud</MDTypography>
           <MDTypography variant='subtitle1' mb={3}>
             La Herramienta Scout que responde al Llamado de la Organización.
           </MDTypography>
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={12} md={10} lg={9}>
           <MDBox>
             <Card sx={{ overflow: 'visible' }}>
               <MDTypography m={1} variant='h3'>
