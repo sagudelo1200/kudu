@@ -37,6 +37,12 @@ import {
 import brandWhite from 'assets/images/logo-ct.png'
 import brandDark from 'assets/images/logo-ct-dark.png'
 
+// Perfect ScrollBar
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css'
+
+import 'assets/custom.css'
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController()
   const {
@@ -127,42 +133,44 @@ export default function App() {
   )
 
   return (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
-      <CssBaseline />
+    <PerfectScrollbar>
+      <ThemeProvider theme={darkMode ? themeDark : theme}>
+        <CssBaseline />
 
-      <Routes>
-        {/* Agrupar rutas del dashboard dentro del DashboardLayout */}
-        <Route
-          path='/dashboards/*'
-          element={
-            <DashboardLayout>
-              <Sidenav
-                color={sidenavColor}
-                brand={
-                  (transparentSidenav && !darkMode) || whiteSidenav
-                    ? brandDark
-                    : brandWhite
-                }
-                brandName='Kudu Cloud'
-                routes={routes}
-                onMouseEnter={handleOnMouseEnter}
-                onMouseLeave={handleOnMouseLeave}
-              />
-              <Configurator />
-              {configsButton}
-              <Routes>{getRoutes(routes)}</Routes>
-            </DashboardLayout>
-          }
-        />
-        {/* redireccionar /dashboards sin /subruta a /kudu  */}
-        <Route
-          path='/dashboards'
-          exact
-          element={<Navigate to='/dashboards/kudu' />}
-        />
-        {/* Otras rutas */}
-        <Route path='*' element={<Navigate to='/dashboards/kudu' />} />
-      </Routes>
-    </ThemeProvider>
+        <Routes>
+          {/* Agrupar rutas del dashboard dentro del DashboardLayout */}
+          <Route
+            path='/dashboards/*'
+            element={
+              <DashboardLayout>
+                <Sidenav
+                  color={sidenavColor}
+                  brand={
+                    (transparentSidenav && !darkMode) || whiteSidenav
+                      ? brandDark
+                      : brandWhite
+                  }
+                  brandName='Kudu Cloud'
+                  routes={routes}
+                  onMouseEnter={handleOnMouseEnter}
+                  onMouseLeave={handleOnMouseLeave}
+                />
+                <Configurator />
+                {configsButton}
+                <Routes>{getRoutes(routes)}</Routes>
+              </DashboardLayout>
+            }
+          />
+          {/* redireccionar /dashboards sin /subruta a /kudu  */}
+          <Route
+            path='/dashboards'
+            exact
+            element={<Navigate to='/dashboards/kudu' />}
+          />
+          {/* Otras rutas */}
+          <Route path='*' element={<Navigate to='/dashboards/kudu' />} />
+        </Routes>
+      </ThemeProvider>
+    </PerfectScrollbar>
   )
 }
