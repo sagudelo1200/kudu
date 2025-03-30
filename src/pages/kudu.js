@@ -112,8 +112,8 @@ function Kudu() {
                       fontWeight='regular'
                       verticalAlign='middle'
                     >
-                      Diseñar una arquitectura robusta, escalable y segura con
-                      Firebase y ReactJS.
+                      <b>Diseñar</b> una arquitectura robusta, escalable y
+                      segura con Firebase y ReactJS.
                     </MDTypography>
                   </MDBox>
                   <MDBox
