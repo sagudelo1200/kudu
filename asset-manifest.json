@@ -1,15 +1,12 @@
 {
   "files": {
-    "main.css": "/kudu-cloud/static/css/main.eae55472.css",
-    "main.js": "/kudu-cloud/static/js/main.d017ffbc.js",
+    "main.js": "/kudu-cloud/static/js/main.745f7386.js",
     "static/media/logo-ct-dark.png": "/kudu-cloud/static/media/logo-ct-dark.ee549019e8609bf7447e.png",
     "static/media/logo-ct.png": "/kudu-cloud/static/media/logo-ct.ee549019e8609bf7447e.png",
     "index.html": "/kudu-cloud/index.html",
-    "main.eae55472.css.map": "/kudu-cloud/static/css/main.eae55472.css.map",
-    "main.d017ffbc.js.map": "/kudu-cloud/static/js/main.d017ffbc.js.map"
+    "main.745f7386.js.map": "/kudu-cloud/static/js/main.745f7386.js.map"
   },
   "entrypoints": [
-    "static/css/main.eae55472.css",
-    "static/js/main.d017ffbc.js"
+    "static/js/main.745f7386.js"
   ]
 }
