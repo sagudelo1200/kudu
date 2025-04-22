@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 3 PRO React - v2.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect } from 'react'
 
 // react-router-dom components
@@ -24,16 +9,18 @@ import PropTypes from 'prop-types'
 // Material Dashboard 3 PRO React components
 import MDBox from 'components/MDBox'
 
+import Footer from 'examples/Footer'
+
 // Material Dashboard 3 PRO React context
 import { useMaterialUIController, setLayout } from 'contexts'
 
-function DashboardLayout({ children }) {
+function KuduLayout({ children }) {
   const [controller, dispatch] = useMaterialUIController()
   const { miniSidenav } = controller
   const { pathname } = useLocation()
 
   useEffect(() => {
-    setLayout(dispatch, 'dashboard')
+    setLayout(dispatch, 'kudu')
     // eslint-disable-next-line
   }, [pathname])
 
@@ -53,13 +40,15 @@ function DashboardLayout({ children }) {
       })}
     >
       {children}
+      <br />
+      <Footer />
     </MDBox>
   )
 }
 
-// Typechecking props for the DashboardLayout
-DashboardLayout.propTypes = {
+// Typechecking props for the KuduLayout
+KuduLayout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default DashboardLayout
+export default KuduLayout

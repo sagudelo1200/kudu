@@ -16,6 +16,7 @@ import Sidenav from 'examples/Sidenav'
 import Configurator from 'examples/Configurator'
 
 import DashboardLayout from 'layouts/DashboardLayout'
+import KuduLayout from 'layouts/KuduLayout'
 
 // Material Dashboard 3 PRO React themes
 import theme from 'assets/theme'
@@ -47,6 +48,7 @@ export default function App() {
     transparentSidenav,
     whiteSidenav,
     darkMode,
+    layout,
   } = controller
   const [onMouseEnter, setOnMouseEnter] = useState(false)
   const { pathname } = useLocation()
@@ -129,38 +131,26 @@ export default function App() {
   return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-
+      {layout === 'kudu' && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={
+              (transparentSidenav && !darkMode) || whiteSidenav
+                ? brandDark
+                : brandWhite
+            }
+            brandName='Kudu Cloud'
+            routes={routes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
       <Routes>
-        {/* Agrupar rutas del dashboard dentro del DashboardLayout */}
-        <Route
-          path='/dashboards/*'
-          element={
-            <DashboardLayout>
-              <Sidenav
-                color={sidenavColor}
-                brand={
-                  (transparentSidenav && !darkMode) || whiteSidenav
-                    ? brandDark
-                    : brandWhite
-                }
-                brandName='Kudu Cloud'
-                routes={routes}
-                onMouseEnter={handleOnMouseEnter}
-                onMouseLeave={handleOnMouseLeave}
-              />
-              <Configurator />
-              {configsButton}
-              <Routes>{getRoutes(routes)}</Routes>
-            </DashboardLayout>
-          }
-        />
-        {/* redireccionar /dashboards sin /subruta a /kudu  */}
-        <Route
-          path='/dashboards'
-          exact
-          element={<Navigate to='/dashboards/kudu' />}
-        />
-        {/* Otras rutas */}
+        {getRoutes(routes)}
         <Route path='*' element={<Navigate to='/dashboards/kudu' />} />
       </Routes>
     </ThemeProvider>

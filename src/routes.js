@@ -31,16 +31,99 @@ const routes = [
     type: 'collapse',
     name: 'Dashboards',
     key: 'dashboards',
-    icon: <Icon fontSize='small'>apps</Icon>,
+    icon: <Icon fontSize='small'>dashboard</Icon>,
     collapse: [
       {
         name: 'Kudu',
         key: 'kudu',
-        route: '/kudu',
+        route: '/dashboards/kudu',
         component: <Kudu />,
       },
     ],
   },
 ]
+/* {
+  kudu: [
+    {
+      type: 'collapse',
+      name: 'Kudu',
+      key: 'kudu',
+      icon: <Icon fontSize='small'>home</Icon>,
+      route: '/kudu',
+      component: <Kudu />,
+      noCollapse: true,
+    },
+    {
+      type: 'collapse',
+      name: 'Integrantes',
+      key: 'integrantes',
+      icon: <Icon fontSize='small'>diversity_3</Icon>,
+      collapse: [
+        {
+          name: 'Cachorros',
+          key: 'cachorros',
+          route: '/integrantes/cachorros',
+          component: <Cachorros />,
+          layout: 'kudu',
+        },
+        {
+          name: 'Lobatos',
+          key: 'lobatos',
+          route: '/integrantes/lobatos',
+          component: <Lobatos />,
+          layout: 'kudu',
+        },
+        {
+          name: 'Webelos',
+          key: 'webelos',
+          route: '/integrantes/webelos',
+          component: <Webelos />,
+          layout: 'kudu',
+        },
+        {
+          name: 'Scouts',
+          key: 'scouts',
+          route: '/integrantes/scouts',
+          component: <Scouts />,
+          layout: 'kudu',
+        },
+        {
+          name: 'Pioneros-Caminantes',
+          key: 'pioneros-caminantes',
+          route: '/integrantes/pioneros-caminantes',
+          component: <Pioneros />,
+          layout: 'kudu',
+        },
+        {
+          name: 'Rovers',
+          key: 'rovers',
+          route: '/integrantes/rovers',
+          component: <Rovers />,
+          layout: 'kudu',
+        },
+      ],
+    },
+    {
+      type: 'collapse',
+      name: 'Actividades',
+      key: 'actividades',
+      icon: <Icon fontSize='small'>list_alt</Icon>,
+      collapse: [
+        {
+          name: 'Fichas de Programa',
+          key: 'fichas-de-programa',
+          route: '/actividades/fichas-de-programa',
+          component: <></>,
+        },
+        {
+          name: 'Programa Seguro',
+          key: 'programa-seguro',
+          route: '/actividades/programa-seguro',
+          component: <></>,
+        },
+      ],
+    },
+  ],
+} */
 
 export default routes

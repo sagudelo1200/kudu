@@ -3,11 +3,15 @@
 import MDBox from 'components/MDBox'
 import MDTypography from 'components/MDTypography'
 
+import KuduLayout from 'layouts/KuduLayout'
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
+
 const { Card, Divider, Grid } = require('@mui/material')
 
 function Kudu() {
   return (
-    <>
+    <KuduLayout>
+      <DashboardNavbar />
       <Grid
         container
         spacing={2}
@@ -195,7 +199,7 @@ function Kudu() {
           </MDBox>
         </Grid>
       </Grid>
-    </>
+    </KuduLayout>
   )
 }
 
