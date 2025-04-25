@@ -1,0 +1,16 @@
+/* Dashboard kudu */
+
+import MDTypography from 'components/MDTypography'
+
+function DashboardPage() {
+  return (
+    <>
+      <MDTypography variant='h4'>Bienvenido al Dashboard</MDTypography>
+      <MDTypography>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </MDTypography>
+    </>
+  )
+}
+
+export default DashboardPage

@@ -1,55 +1,130 @@
-import { useEffect } from 'react'
-
-// react-router-dom components
-import { useLocation } from 'react-router-dom'
-
-// prop-types is a library for typechecking of props.
-import PropTypes from 'prop-types'
-
-// Material Dashboard 3 PRO React components
+import { useEffect, useState } from 'react'
+import { useLocation, Outlet } from 'react-router-dom'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import Icon from '@mui/material/Icon'
 import MDBox from 'components/MDBox'
-
-import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 import Footer from 'examples/Footer'
+import Sidenav from 'examples/Sidenav'
+import Configurator from 'examples/Configurator'
+import {
+  useMaterialUIController,
+  setLayout,
+  setMiniSidenav,
+  setOpenConfigurator,
+} from 'contexts'
+import theme from 'assets/theme'
+import themeDark from 'assets/theme-dark'
+import routes from 'routes'
 
-// Material Dashboard 3 PRO React context
-import { useMaterialUIController, setLayout } from 'contexts'
+// Brand images
+import brandWhite from 'assets/images/logo-ct.png'
+import brandDark from 'assets/images/logo-ct-dark.png'
+import BaseContainer from 'components/BaseContainer'
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 
-function DashboardLayout({ children }) {
+function DashboardLayout() {
   const [controller, dispatch] = useMaterialUIController()
-  const { miniSidenav } = controller
+  const {
+    miniSidenav,
+    direction,
+    darkMode,
+    sidenavColor,
+    transparentSidenav,
+    whiteSidenav,
+    openConfigurator,
+  } = controller
   const { pathname } = useLocation()
+  const [onMouseEnter, setOnMouseEnter] = useState(false)
 
+  // Open sidenav when mouse enters mini sidenav
+  const handleOnMouseEnter = () => {
+    if (miniSidenav && !onMouseEnter) {
+      setMiniSidenav(dispatch, false)
+      setOnMouseEnter(true)
+    }
+  }
+
+  // Close sidenav when mouse leaves mini sidenav
+  const handleOnMouseLeave = () => {
+    if (onMouseEnter) {
+      setMiniSidenav(dispatch, true)
+      setOnMouseEnter(false)
+    }
+  }
+
+  // Toggle configurator
+  const handleConfiguratorOpen = () =>
+    setOpenConfigurator(dispatch, !openConfigurator)
+
+  // Set layout type
   useEffect(() => {
     setLayout(dispatch, 'dashboard')
     // eslint-disable-next-line
   }, [pathname])
 
-  return (
-    <MDBox
-      sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
-        p: 3,
-        position: 'relative',
+  // Set direction attribute for body
+  useEffect(() => {
+    document.body.setAttribute('dir', direction)
+  }, [direction])
 
-        [breakpoints.up('xl')]: {
-          marginLeft: miniSidenav ? pxToRem(104) : pxToRem(228),
-          transition: transitions.create(['margin-left', 'margin-right'], {
-            easing: transitions.easing.easeInOut,
-            duration: transitions.duration.standard,
-          }),
-        },
-      })}
+  // Scroll to top on route change
+  useEffect(() => {
+    document.documentElement.scrollTop = 0
+    document.scrollingElement.scrollTop = 0
+  }, [pathname])
+
+  // Configurator button
+  const configsButton = (
+    <MDBox
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
+      width='3.25rem'
+      height='3.25rem'
+      bgColor='white'
+      shadow='sm'
+      borderRadius='50%'
+      position='fixed'
+      right='2rem'
+      bottom='2rem'
+      zIndex={99}
+      color='dark'
+      sx={{ cursor: 'pointer' }}
+      onClick={handleConfiguratorOpen}
     >
-      {children}
-      <br />
-      <Footer />
+      <Icon fontSize='small' color='inherit'>
+        settings
+      </Icon>
     </MDBox>
   )
-}
 
-// Typechecking props for the DashboardLayout
-DashboardLayout.propTypes = {
-  children: PropTypes.node.isRequired,
+  return (
+    <ThemeProvider theme={darkMode ? themeDark : theme}>
+      <CssBaseline />
+      <Sidenav
+        color={sidenavColor}
+        brand={
+          (transparentSidenav && !darkMode) || whiteSidenav
+            ? brandDark
+            : brandWhite
+        }
+        brandName='Dash Layout'
+        routes={routes}
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
+      />
+      <Configurator />
+      {configsButton}
+      <BaseContainer>
+        <DashboardNavbar />
+        <MDBox>
+          <Outlet />
+          <Footer />
+        </MDBox>
+      </BaseContainer>
+    </ThemeProvider>
+  )
 }
 
 export default DashboardLayout
