@@ -1,4 +1,3 @@
-import BaseContainer from 'components/BaseContainer'
 import MDTypography from 'components/MDTypography'
 import { Card, Divider, Grid } from '@mui/material'
 import MDBox from 'components/MDBox'
@@ -10,7 +9,7 @@ function Kudu() {
         <Grid item xs={12} md={10} lg={9}>
           <MDTypography variant='h1'>Kudu Cloud</MDTypography>
           <MDTypography variant='subtitle1' mb={3}>
-            La Herramienta Scout que responde al Llamado de la Organización.
+            La herramienta Scout que responde al llamado de la organización.
           </MDTypography>
         </Grid>
         <Grid item xs={12} md={10} lg={9}>
@@ -19,27 +18,12 @@ function Kudu() {
               ✨ Introducción
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Miles de scouts dependen de registros manuales y sistemas
-              dispersos para gestionar sus actividades. ¿El resultado? Pérdida
-              de tiempo, errores administrativos y falta de transparencia.
-              <br />
               Kudu Cloud llega para transformar la gestión scout con una
-              solución digital eficiente y accesible que promueve la
+              solución digital eficiente y accesible. Miles de scouts dependen
+              de registros manuales y sistemas dispersos, lo que provoca pérdida
+              de tiempo y errores administrativos. Kudu Cloud promueve la
               organización, las buenas prácticas y la transparencia en todos los
               niveles de la estructura scout.
-            </MDTypography>
-          </Card>
-          <Divider />
-          <Card sx={{ overflow: 'visible' }}>
-            <MDTypography m={1} variant='h3'>
-              📖 Resumen de la Propuesta
-            </MDTypography>
-            <MDTypography m={1} variant='body2'>
-              El escultismo forma líderes a través de experiencias prácticas,
-              pero la administración de grupos sigue atrapada en el papel y
-              herramientas dispersas. Kudu Cloud es la solución: una plataforma
-              digital rápida, segura y escalable que permite a dirigentes y
-              miembros gestionar información sin complicaciones.
             </MDTypography>
           </Card>
           <Divider />
@@ -48,23 +32,69 @@ function Kudu() {
               🚨 Problema
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Los grupos y regiones scouts suelen gestionar su administración
-              mediante documentos físicos, archivos de excel y otras
-              herramientas digitales dispersas y desconectadas para su gestión.
-              <br />
-              Esto provoca pérdida de información, poca transparencia y
-              dificultades para medir el crecimiento de los miembros. Sin una
-              solución digital adecuada, el crecimiento del escultismo se frena.
+              La administración en las organizaciones scouts, desde grupos
+              locales hasta regiones nacionales, enfrenta desafíos
+              significativos debido al uso de documentos físicos y herramientas
+              digitales no integradas. Esto genera:
             </MDTypography>
-            <MDTypography m={1} variant='h4'>
-              📜 Antecedentes del Problema
-            </MDTypography>
+
+            <MDBox component='ul' m={0} pl={4} mb={2}>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
+                  variant='body2'
+                  color='text'
+                  fontWeight='regular'
+                  verticalAlign='middle'
+                >
+                  <b>Pérdida de información:</b> La falta de un sistema
+                  centralizado dificulta el acceso y la conservación de datos
+                  importantes.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
+                  variant='body2'
+                  color='text'
+                  fontWeight='regular'
+                  verticalAlign='middle'
+                >
+                  <b>Falta de transparencia:</b> Los procesos administrativos
+                  dispersos limitan la visibilidad y la rendición de cuentas en
+                  todos los niveles.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
+                  variant='body2'
+                  color='text'
+                  fontWeight='regular'
+                  verticalAlign='middle'
+                >
+                  <b>Dificultades para medir el crecimiento:</b> Sin datos
+                  confiables y organizados, es complicado evaluar el impacto y
+                  el desarrollo del movimiento scout.
+                </MDTypography>
+              </MDBox>
+            </MDBox>
             <MDTypography m={1} variant='body2'>
-              Históricamente, los grupos scouts han dependido de registros
-              manuales y métodos descentralizados de organización. Algunas
-              soluciones digitales han intentado abordar este problema, pero no
-              han logrado adaptarse completamente a la dinámica y necesidades
-              específicas del escultismo actual.
+              Estos problemas no solo afectan la eficiencia operativa, sino que
+              también limitan el potencial de crecimiento y la capacidad de los
+              scouts para cumplir su misión de formar mejores ciudadanos.
             </MDTypography>
           </Card>
           <Divider />
@@ -84,73 +114,67 @@ function Kudu() {
             <MDTypography m={1} variant='h4'>
               Objetivos Específicos
             </MDTypography>
-            <MDBox
-              display='flex'
-              justifyContent='space-between'
-              alignItems='flex-end'
-              flexWrap='wrap'
-            >
-              <MDBox component='ul' m={0} pl={3.25} mb={{ xs: 8, sm: 0 }}>
-                <MDBox
-                  component='li'
+
+            <MDBox component='ul' m={0} pl={3.25} mb={{ xs: 8, sm: 0 }}>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
                   color='text'
-                  fontSize='1.25rem'
-                  lineHeight={1}
+                  fontWeight='regular'
+                  verticalAlign='middle'
                 >
-                  <MDTypography
-                    color='text'
-                    fontWeight='regular'
-                    verticalAlign='middle'
-                  >
-                    <b>Diseñar</b> una arquitectura robusta, escalable y segura
-                    con Firebase y ReactJS.
-                  </MDTypography>
-                </MDBox>
-                <MDBox
-                  component='li'
+                  <b>Diseñar</b> una arquitectura robusta, escalable y segura
+                  con Firebase y ReactJS.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
                   color='text'
-                  fontSize='1.25rem'
-                  lineHeight={1}
+                  fontWeight='regular'
+                  verticalAlign='middle'
                 >
-                  <MDTypography
-                    color='text'
-                    fontWeight='regular'
-                    verticalAlign='middle'
-                  >
-                    <b>Implementar</b> un sistema de autenticación con roles y
-                    permisos jerárquicos.
-                  </MDTypography>
-                </MDBox>
-                <MDBox
-                  component='li'
+                  <b>Implementar</b> un sistema de autenticación con roles y
+                  permisos jerárquicos.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
                   color='text'
-                  fontSize='1.25rem'
-                  lineHeight={1}
+                  fontWeight='regular'
+                  verticalAlign='middle'
                 >
-                  <MDTypography
-                    color='text'
-                    fontWeight='regular'
-                    verticalAlign='middle'
-                  >
-                    <b>Facilitar</b> la gestión de integrantes, actividades,
-                    eventos y documentos.
-                  </MDTypography>
-                </MDBox>
-                <MDBox
-                  component='li'
+                  <b>Facilitar</b> la gestión de integrantes, actividades,
+                  documentos y eventos.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
                   color='text'
-                  fontSize='1.25rem'
-                  lineHeight={1}
+                  fontWeight='regular'
+                  verticalAlign='middle'
                 >
-                  <MDTypography
-                    color='text'
-                    fontWeight='regular'
-                    verticalAlign='middle'
-                  >
-                    <b>Integrar</b> funcionalidades de reportes y métricas para
-                    la mejora continua.
-                  </MDTypography>
-                </MDBox>
+                  <b>Integrar</b> funcionalidades de reportes y métricas para la
+                  mejora continua.
+                </MDTypography>
               </MDBox>
             </MDBox>
           </Card>
@@ -163,10 +187,8 @@ function Kudu() {
               Kudu Cloud no solo optimiza la gestión, sino que también reduce la
               carga administrativa de los adultos voluntarios, mejora la
               transparencia y facilita el acceso a la información en tiempo
-              real.
-              <br />
-              Con esta plataforma, los grupos scouts pueden enfocarse en lo que
-              realmente importa: el desarrollo de los jóvenes.
+              real. Con esta plataforma, los grupos scouts pueden enfocarse en
+              lo que realmente importa: el desarrollo de los jóvenes.
             </MDTypography>
           </Card>
           <Divider />
@@ -175,12 +197,80 @@ function Kudu() {
               🏛️ Fundamentos
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Kudu Cloud se basa en Firebase, una tecnología confiable que
-              permite almacenamiento seguro y sincronización en tiempo real,
-              ideal para gestionar datos de scouts en cualquier lugar. Con
-              ReactJS, ofrecemos una interfaz rápida, intuitiva y accesible
-              desde cualquier dispositivo.
+              Kudu Cloud se basa en principios fundamentales que guían su
+              desarrollo y propósito:
             </MDTypography>
+            <MDBox component='ul' m={0} pl={3.25} mb={{ xs: 8, sm: 0 }}>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
+                  variant='body2'
+                  color='text'
+                  fontWeight='regular'
+                  verticalAlign='middle'
+                >
+                  <b>Transparencia:</b> Promovemos una gestión clara y accesible
+                  para todos los niveles de la organización scout, asegurando
+                  que la información esté disponible de manera confiable.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
+                  variant='body2'
+                  color='text'
+                  fontWeight='regular'
+                  verticalAlign='middle'
+                >
+                  <b>Colaboración:</b> Fomentamos el trabajo en equipo y la
+                  participación activa de todos los miembros, desde líderes
+                  hasta jóvenes scouts, para construir una comunidad más fuerte.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
+                  variant='body2'
+                  color='text'
+                  fontWeight='regular'
+                  verticalAlign='middle'
+                >
+                  <b>Accesibilidad:</b> Diseñamos una plataforma inclusiva y
+                  fácil de usar, accesible desde cualquier dispositivo, para
+                  garantizar que todos puedan beneficiarse de sus
+                  funcionalidades.
+                </MDTypography>
+              </MDBox>
+              <MDBox
+                component='li'
+                color='text'
+                fontSize='1.25rem'
+                lineHeight={1}
+              >
+                <MDTypography
+                  variant='body2'
+                  color='text'
+                  fontWeight='regular'
+                  verticalAlign='middle'
+                >
+                  <b>Innovación:</b> Nos comprometemos a utilizar las mejores
+                  prácticas y tecnologías modernas para ofrecer soluciones que
+                  se adapten a las necesidades cambiantes del escultismo.
+                </MDTypography>
+              </MDBox>
+            </MDBox>
           </Card>
         </Grid>
       </Grid>

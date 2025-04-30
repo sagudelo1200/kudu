@@ -26,6 +26,7 @@ import MDTypography from 'components/MDTypography'
 
 // Material Dashboard 3 PRO React base styles
 import typography from 'assets/theme/base/typography'
+import { Divider } from '@mui/material'
 
 function Footer({
   company = {
@@ -49,6 +50,8 @@ function Footer({
     ))
 
   return (
+    <>
+    <Divider />
     <MDBox
       width='100%'
       display='flex'
@@ -56,7 +59,7 @@ function Footer({
       justifyContent='space-between'
       alignItems='center'
       px={1.5}
-    >
+      >
       <MDBox
         display='flex'
         justifyContent='center'
@@ -65,7 +68,7 @@ function Footer({
         color='text'
         fontSize={size.sm}
         px={1.5}
-      >
+        >
         {new Date().getFullYear()} &copy; Hecho con
         <MDBox fontSize={size.md} color='text' mb={-0.5} mx={0.25}>
           <Icon color='error' fontSize='inherit'>
@@ -90,15 +93,16 @@ function Footer({
           mt: 3,
           mb: 0,
           p: 0,
-
+          
           [breakpoints.up('lg')]: {
             mt: 0,
           },
         })}
-      >
+        >
         {renderLinks()}
       </MDBox>
     </MDBox>
+  </>
   )
 }
 
