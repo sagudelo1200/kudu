@@ -15,7 +15,6 @@ import {
 } from 'contexts'
 import theme from 'assets/theme'
 import themeDark from 'assets/theme-dark'
-import routes from 'routes'
 
 // Brand images
 import brandWhite from 'assets/images/logo-ct.png'
@@ -23,7 +22,7 @@ import brandDark from 'assets/images/logo-ct-dark.png'
 import BaseContainer from 'components/BaseContainer'
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 
-function DashboardLayout() {
+function DashboardLayout({ routes }) { // Recibimos las rutas como prop
   const [controller, dispatch] = useMaterialUIController()
   const {
     miniSidenav,
@@ -110,7 +109,7 @@ function DashboardLayout() {
             : brandWhite
         }
         brandName='Dash Layout'
-        routes={routes}
+        routes={routes} // Usamos las rutas pasadas como prop
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       />

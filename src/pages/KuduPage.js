@@ -2,7 +2,7 @@ import MDTypography from 'components/MDTypography'
 import { Card, Divider, Grid } from '@mui/material'
 import MDBox from 'components/MDBox'
 
-function Kudu() {
+function KuduPage() {
   return (
     <>
       <Grid container spacing={2} justifyContent='center' alignItems='center'>
@@ -278,4 +278,4 @@ function Kudu() {
   )
 }
 
-export default Kudu
+export default KuduPage

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, Outlet } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -15,9 +15,6 @@ import {
 } from 'contexts'
 import theme from 'assets/theme'
 import themeDark from 'assets/theme-dark'
-import rtlPlugin from 'stylis-plugin-rtl'
-import createCache from '@emotion/cache'
-import routes from 'routes'
 
 // Brand images
 import brandWhite from 'assets/images/logo-ct.png'
@@ -25,7 +22,7 @@ import brandDark from 'assets/images/logo-ct-dark.png'
 import BaseContainer from 'components/BaseContainer'
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 
-function KuduLayout() {
+function KuduLayout({ routes }) { // Recibimos las rutas como prop
   const [controller, dispatch] = useMaterialUIController()
   const {
     miniSidenav,
@@ -38,16 +35,6 @@ function KuduLayout() {
   } = controller
   const { pathname } = useLocation()
   const [onMouseEnter, setOnMouseEnter] = useState(false)
-  const [rtlCache, setRtlCache] = useState(null)
-
-  // Cache for RTL
-  useMemo(() => {
-    const cacheRtl = createCache({
-      key: 'rtl',
-      stylisPlugins: [rtlPlugin],
-    })
-    setRtlCache(cacheRtl)
-  }, [])
 
   // Open sidenav when mouse enters mini sidenav
   const handleOnMouseEnter = () => {
@@ -122,7 +109,7 @@ function KuduLayout() {
             : brandWhite
         }
         brandName='Kudu Layout'
-        routes={routes}
+        routes={routes} // Usamos las rutas pasadas como prop
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       />
