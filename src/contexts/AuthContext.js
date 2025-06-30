@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { getFirestore, doc, getDoc } from 'firebase/firestore'
-import app from 'firebaseConfig'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from 'firebaseApp'
 
 const AuthContext = createContext()
 
@@ -11,7 +11,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     async function fetchUserData() {
       const userId = 'YkrJqORD20hylp1QuQFqR1Lj9Dv2' // ID del usuario actual (simulado)
-      const db = getFirestore(app)
 
       try {
         const userDoc = await getDoc(doc(db, 'usuarios', userId))

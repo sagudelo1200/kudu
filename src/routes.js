@@ -4,8 +4,8 @@
 */
 
 import { useEffect, useState } from 'react'
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
-import app from 'firebaseConfig'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from 'firebaseApp'
 
 // Layouts dinámicos
 import KuduLayout from 'layouts/KuduLayout'
@@ -31,7 +31,6 @@ export default function useDynamicRoutes() {
 
   useEffect(() => {
     async function fetchRoutes() {
-      const db = getFirestore(app) // Usar la instancia de Firebase
       const routesCollection = collection(db, 'routes')
       try {
         const snapshot = await getDocs(routesCollection)

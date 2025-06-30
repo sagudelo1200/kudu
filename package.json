@@ -1,7 +1,7 @@
 {
-  "name": "kudu-cloud",
+  "name": "kudu",
   "version": "1.0.0",
-  "homepage": "https://sagudelo1200.github.io/kudu-cloud",
+  "homepage": "https://sagudelo1200.github.io/kudu",
   "private": true,
   "author": "Santiago Agudelo",
   "description": "La herramienta scout que responde al llamado de la organización",

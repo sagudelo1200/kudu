@@ -7,7 +7,7 @@ function KuduPage() {
     <>
       <Grid container spacing={2} justifyContent='center' alignItems='center'>
         <Grid item xs={12} md={10} lg={9}>
-          <MDTypography variant='h1'>Kudu Cloud</MDTypography>
+          <MDTypography variant='h1'>Kudu</MDTypography>
           <MDTypography variant='subtitle1' mb={3}>
             La herramienta Scout que responde al llamado de la organización.
           </MDTypography>
@@ -18,12 +18,12 @@ function KuduPage() {
               ✨ Introducción
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Kudu Cloud llega para transformar la gestión scout con una
-              solución digital eficiente y accesible. Miles de scouts dependen
-              de registros manuales y sistemas dispersos, lo que provoca pérdida
-              de tiempo y errores administrativos. Kudu Cloud promueve la
-              organización, las buenas prácticas y la transparencia en todos los
-              niveles de la estructura scout.
+              Kudu llega para transformar la gestión scout con una solución
+              digital eficiente y accesible. Miles de scouts dependen de
+              registros manuales y sistemas dispersos, lo que provoca pérdida de
+              tiempo y errores administrativos. Kudu promueve la organización,
+              las buenas prácticas y la transparencia en todos los niveles de la
+              estructura scout.
             </MDTypography>
           </Card>
           <Divider />
@@ -184,11 +184,11 @@ function KuduPage() {
               🔥 Justificación
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Kudu Cloud no solo optimiza la gestión, sino que también reduce la
-              carga administrativa de los adultos voluntarios, mejora la
-              transparencia y facilita el acceso a la información en tiempo
-              real. Con esta plataforma, los grupos scouts pueden enfocarse en
-              lo que realmente importa: el desarrollo de los jóvenes.
+              Kudu no solo optimiza la gestión, sino que también reduce la carga
+              administrativa de los adultos voluntarios, mejora la transparencia
+              y facilita el acceso a la información en tiempo real. Con esta
+              plataforma, los grupos scouts pueden enfocarse en lo que realmente
+              importa: el desarrollo de los jóvenes.
             </MDTypography>
           </Card>
           <Divider />
@@ -197,8 +197,8 @@ function KuduPage() {
               🏛️ Fundamentos
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Kudu Cloud se basa en principios fundamentales que guían su
-              desarrollo y propósito:
+              Kudu se basa en principios fundamentales que guían su desarrollo y
+              propósito:
             </MDTypography>
             <MDBox component='ul' m={0} pl={3.25} mb={{ xs: 8, sm: 0 }}>
               <MDBox
