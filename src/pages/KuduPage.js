@@ -18,12 +18,13 @@ function KuduPage() {
               ✨ Introducción
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Kudu llega para transformar la gestión scout con una solución
-              digital eficiente y accesible. Miles de scouts dependen de
-              registros manuales y sistemas dispersos, lo que provoca pérdida de
-              tiempo y errores administrativos. Kudu promueve la organización,
-              las buenas prácticas y la transparencia en todos los niveles de la
-              estructura scout.
+              Kudu transforma la gestión scout mediante una solución digital
+              integral, eficiente y segura. Frente a un entorno marcado por
+              documentos físicos y plataformas desconectadas, Kudu centraliza
+              procesos, mejora la organización, y permite tomar decisiones con
+              datos confiables. Es momento de dejar de perder tiempo en la
+              administración para volver al propósito: el desarrollo de los
+              jóvenes.
             </MDTypography>
           </Card>
           <Divider />
@@ -32,10 +33,8 @@ function KuduPage() {
               🚨 Problema
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              La administración en las organizaciones scouts, desde grupos
-              locales hasta regiones nacionales, enfrenta desafíos
-              significativos debido al uso de documentos físicos y herramientas
-              digitales no integradas. Esto genera:
+              La administración en el escultismo —desde grupos locales hasta
+              niveles nacionales— enfrenta dificultades reales:
             </MDTypography>
 
             <MDBox component='ul' m={0} pl={4} mb={2}>
@@ -51,9 +50,8 @@ function KuduPage() {
                   fontWeight='regular'
                   verticalAlign='middle'
                 >
-                  <b>Pérdida de información:</b> La falta de un sistema
-                  centralizado dificulta el acceso y la conservación de datos
-                  importantes.
+                  <b>Pérdida de información:</b> La dispersión en documentos y
+                  herramientas impide una trazabilidad segura.
                 </MDTypography>
               </MDBox>
               <MDBox
@@ -68,9 +66,8 @@ function KuduPage() {
                   fontWeight='regular'
                   verticalAlign='middle'
                 >
-                  <b>Falta de transparencia:</b> Los procesos administrativos
-                  dispersos limitan la visibilidad y la rendición de cuentas en
-                  todos los niveles.
+                  <b>Falta de transparencia:</b> Procesos opacos que debilitan
+                  la confianza y la rendición de cuentas.
                 </MDTypography>
               </MDBox>
               <MDBox
@@ -85,16 +82,15 @@ function KuduPage() {
                   fontWeight='regular'
                   verticalAlign='middle'
                 >
-                  <b>Dificultades para medir el crecimiento:</b> Sin datos
-                  confiables y organizados, es complicado evaluar el impacto y
-                  el desarrollo del movimiento scout.
+                  <b>Ausencia de métricas claras:</b> Sin datos organizados, el
+                  crecimiento y el impacto del escultismo no pueden ser
+                  evaluados correctamente.
                 </MDTypography>
               </MDBox>
             </MDBox>
             <MDTypography m={1} variant='body2'>
-              Estos problemas no solo afectan la eficiencia operativa, sino que
-              también limitan el potencial de crecimiento y la capacidad de los
-              scouts para cumplir su misión de formar mejores ciudadanos.
+              Estos problemas frenan el potencial del movimiento y sobrecargan a
+              los voluntarios, alejándolos de su misión educativa.
             </MDTypography>
           </Card>
           <Divider />
@@ -106,9 +102,8 @@ function KuduPage() {
               Objetivo General
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Crear una plataforma digital eficiente y segura que simplifique la
-              gestión de grupos, regiones y naciones scouts, optimizando la
-              administración y promoviendo la transparencia.
+              Construir una plataforma digital escalable y segura para optimizar
+              la gestión de estructuras scouts en todos los niveles.
             </MDTypography>
 
             <MDTypography m={1} variant='h4'>
@@ -116,64 +111,48 @@ function KuduPage() {
             </MDTypography>
 
             <MDBox component='ul' m={0} pl={3.25} mb={{ xs: 8, sm: 0 }}>
-              <MDBox
-                component='li'
-                color='text'
-                fontSize='1.25rem'
-                lineHeight={1}
-              >
+              <MDBox component='li' color='text' lineHeight={1}>
                 <MDTypography
                   color='text'
                   fontWeight='regular'
                   verticalAlign='middle'
+                  fontSize='1rem'
                 >
-                  <b>Diseñar</b> una arquitectura robusta, escalable y segura
-                  con Firebase y ReactJS.
+                  <b>Desarrollar</b> una arquitectura robusta, escalable y
+                  segura con Firebase y React.
                 </MDTypography>
               </MDBox>
-              <MDBox
-                component='li'
-                color='text'
-                fontSize='1.25rem'
-                lineHeight={1}
-              >
+              <MDBox component='li' color='text' lineHeight={1}>
                 <MDTypography
                   color='text'
                   fontWeight='regular'
                   verticalAlign='middle'
+                  fontSize='1rem'
                 >
-                  <b>Implementar</b> un sistema de autenticación con roles y
-                  permisos jerárquicos.
+                  <b>Implementar</b> control de usuarios con roles jerárquicos y
+                  permisos granulares.
                 </MDTypography>
               </MDBox>
-              <MDBox
-                component='li'
-                color='text'
-                fontSize='1.25rem'
-                lineHeight={1}
-              >
+              <MDBox component='li' color='text' lineHeight={1}>
                 <MDTypography
                   color='text'
                   fontWeight='regular'
                   verticalAlign='middle'
+                  fontSize='1rem'
                 >
-                  <b>Facilitar</b> la gestión de integrantes, actividades,
-                  documentos y eventos.
+                  <b>Gestionar</b> integrantes, actividades, eventos y
+                  documentación de forma centralizada y eficiente.
                 </MDTypography>
               </MDBox>
-              <MDBox
-                component='li'
-                color='text'
-                fontSize='1.25rem'
-                lineHeight={1}
-              >
+              <MDBox component='li' color='text' lineHeight={1}>
                 <MDTypography
                   color='text'
                   fontWeight='regular'
                   verticalAlign='middle'
+                  fontSize='1rem'
                 >
-                  <b>Integrar</b> funcionalidades de reportes y métricas para la
-                  mejora continua.
+                  <b>Integrar</b> paneles de análisis y reportes para evaluación
+                  de impacto y métricas para la mejora continua.
                 </MDTypography>
               </MDBox>
             </MDBox>
@@ -184,11 +163,10 @@ function KuduPage() {
               🔥 Justificación
             </MDTypography>
             <MDTypography m={1} variant='body2'>
-              Kudu no solo optimiza la gestión, sino que también reduce la carga
-              administrativa de los adultos voluntarios, mejora la transparencia
-              y facilita el acceso a la información en tiempo real. Con esta
-              plataforma, los grupos scouts pueden enfocarse en lo que realmente
-              importa: el desarrollo de los jóvenes.
+              Kudu reduce la carga operativa, mejora la organización, y devuelve
+              el tiempo a quienes lo necesitan: los líderes educativos. Un
+              sistema ágil y accesible es vital para que el movimiento scout
+              pueda escalar con eficiencia y enfoque.
             </MDTypography>
           </Card>
           <Divider />
@@ -213,9 +191,8 @@ function KuduPage() {
                   fontWeight='regular'
                   verticalAlign='middle'
                 >
-                  <b>Transparencia:</b> Promovemos una gestión clara y accesible
-                  para todos los niveles de la organización scout, asegurando
-                  que la información esté disponible de manera confiable.
+                  <b>Transparencia:</b> Acceso claro y oportuno a la
+                  información. Lo que se gestiona, se puede confiar.
                 </MDTypography>
               </MDBox>
               <MDBox
@@ -230,9 +207,8 @@ function KuduPage() {
                   fontWeight='regular'
                   verticalAlign='middle'
                 >
-                  <b>Colaboración:</b> Fomentamos el trabajo en equipo y la
-                  participación activa de todos los miembros, desde líderes
-                  hasta jóvenes scouts, para construir una comunidad más fuerte.
+                  <b>Colaboración:</b> Participación activa de cada nivel:
+                  dirigentes, jóvenes, acudientes, equipos nacionales.
                 </MDTypography>
               </MDBox>
               <MDBox
@@ -247,10 +223,8 @@ function KuduPage() {
                   fontWeight='regular'
                   verticalAlign='middle'
                 >
-                  <b>Accesibilidad:</b> Diseñamos una plataforma inclusiva y
-                  fácil de usar, accesible desde cualquier dispositivo, para
-                  garantizar que todos puedan beneficiarse de sus
-                  funcionalidades.
+                  <b>Accesibilidad:</b> Usabilidad multiplataforma, adaptable y
+                  sin barreras.
                 </MDTypography>
               </MDBox>
               <MDBox
@@ -265,9 +239,8 @@ function KuduPage() {
                   fontWeight='regular'
                   verticalAlign='middle'
                 >
-                  <b>Innovación:</b> Nos comprometemos a utilizar las mejores
-                  prácticas y tecnologías modernas para ofrecer soluciones que
-                  se adapten a las necesidades cambiantes del escultismo.
+                  <b>Innovación:</b> Construido con tecnologías modernas y
+                  visión de futuro.
                 </MDTypography>
               </MDBox>
             </MDBox>
