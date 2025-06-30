@@ -3,6 +3,7 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import useDynamicRoutes from 'routes'
 import ProtectedRoute from 'components/ProtectedRoute'
 import Unauthorized from 'pages/Unauthorized'
+import LoadingPage from 'components/LoadingPage'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -23,7 +24,7 @@ export default function App() {
 
   if (isLoading) {
     // Muestra un indicador de carga mientras se obtienen las rutas
-    return <div>Cargando rutas...</div>
+    return <LoadingPage />
   }
 
   return (
@@ -34,25 +35,37 @@ export default function App() {
           path={path}
           element={<LayoutComponent routes={pages} />} // Pasamos las rutas al layout
         >
-          {pages.map(({ path: childPath, component: PageComponent, roles, permissions }) => (
-            <Route
-              key={childPath}
-              path={childPath}
-              element={
-                <ProtectedRoute requiredRoles={roles} requiredPermissions={permissions}>
-                  <PageComponent />
-                </ProtectedRoute>
-              }
-            />
-          ))}
+          {pages.map(
+            ({
+              path: childPath,
+              component: PageComponent,
+              roles,
+              permissions,
+            }) => (
+              <Route
+                key={childPath}
+                path={childPath}
+                element={
+                  <ProtectedRoute
+                    requiredRoles={roles}
+                    requiredPermissions={permissions}
+                  >
+                    <PageComponent />
+                  </ProtectedRoute>
+                }
+              />
+            )
+          )}
           {/* Ruta por defecto para cada layout */}
-          {defaultPage && <Route path="*" element={<Navigate to={defaultPage} replace />} />}
+          {defaultPage && (
+            <Route path='*' element={<Navigate to={defaultPage} replace />} />
+          )}
         </Route>
       ))}
       {/* Ruta de acceso denegado */}
-      <Route path="/unauthorized" element={<Unauthorized />} />
+      <Route path='/unauthorized' element={<Unauthorized />} />
       {/* Ruta global por defecto */}
-      <Route path="*" element={<Navigate to="/kudu" replace />} />
+      <Route path='*' element={<Navigate to='/kudu' replace />} />
     </Routes>
   )
 }
