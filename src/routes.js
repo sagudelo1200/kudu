@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from 'react'
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
-import app from './FirebaseConfig' // Importar la instancia de Firebase
+import app from 'firebaseConfig'
 
 // Layouts dinámicos
 import KuduLayout from 'layouts/KuduLayout'
