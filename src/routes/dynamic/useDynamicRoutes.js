@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from 'firebaseApp'
 import { useAuth } from 'contexts/AuthContext'
-import { canAccess } from 'hooks/utils/access'
+import { canAccess } from 'utils/access'
 
 import componentMap from './componentMap'
 import layoutMap from './layoutMap'
