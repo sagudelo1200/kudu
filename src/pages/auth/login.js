@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from 'contexts/AuthContext'
 
 function Login() {
   const { login, logout } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,7 +19,10 @@ function Login() {
     try {
       await login(email, password)
       console.log('🔑 Sesión iniciada correctamente')
-      navigate('/kudu')
+
+      // Redirigir a la ruta original o a /kudu por defecto
+      const from = location.state?.from?.pathname || '/kudu'
+      navigate(from, { replace: true })
     } catch (err) {
       setError('Correo o contraseña incorrectos')
     } finally {

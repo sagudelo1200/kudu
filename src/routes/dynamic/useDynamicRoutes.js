@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from 'firebaseApp'
 import { useAuth } from 'contexts/AuthContext'
@@ -10,13 +10,11 @@ import layoutMap from './layoutMap'
 export default function useDynamicRoutes() {
   const [routes, setRoutes] = useState([])
   const [loading, setLoading] = useState(true)
-  const { roles, permissions, loading: authLoading } = useAuth()
+  const { loading: authLoading } = useAuth()
 
   useEffect(() => {
     // No ejecutar si aún no cargan los datos del usuario
     if (authLoading) return
-
-    console.log('🔄 Cargando rutas dinámicas...')
 
     const unsubscribe = onSnapshot(collection(db, 'routes'), (snapshot) => {
       const result = []
@@ -24,35 +22,23 @@ export default function useDynamicRoutes() {
       snapshot.forEach((doc) => {
         const data = doc.data()
 
-        if (
-          canAccess({
-            userRoles: roles,
-            userPermissions: permissions,
+        const Layout =
+          layoutMap[data.layout?.toLowerCase()] || (({ children }) => children)
+        const Component = componentMap[data.component]
+
+        if (data.route && Component) {
+          result.push({
+            path: data.route,
+            element: (
+              <Layout>
+                <Component />
+              </Layout>
+            ),
             requiredRoles: data.roles || [],
             requiredPermissions: data.permissions || [],
           })
-        ) {
-          const Layout =
-            layoutMap[data.layout?.toLowerCase()] ||
-            (({ children }) => children)
-          const Component = componentMap[data.component]
-
-          if (data.route && Component) {
-            result.push({
-              path: data.route,
-              element: (
-                <Layout>
-                  <Component />
-                </Layout>
-              ),
-              requiredRoles: data.roles || [],
-              requiredPermissions: data.permissions || [],
-            })
-
-            console.log(`✅ Ruta habilitada: ${data.route}`)
-          }
         } else {
-          console.warn(`⛔ Ruta restringida: ${data.route}`)
+          console.warn(`⚠️ Ruta incompleta: ${data.route} - Falta componente`)
         }
       })
 
@@ -61,7 +47,34 @@ export default function useDynamicRoutes() {
     })
 
     return () => unsubscribe()
-  }, [roles, permissions, authLoading])
+  }, [authLoading]) // 🚨 Removemos roles y permissions del dependency array
 
   return { routes, loading }
+}
+
+// 🎯 Hook especializado para el sidebar (SÍ filtra por permisos)
+export function useSidebarRoutes() {
+  const { routes, loading } = useDynamicRoutes()
+  const { roles, permissions } = useAuth()
+
+  const sidebarRoutes = useMemo(() => {
+    return routes
+      .filter((route) =>
+        canAccess({
+          userRoles: roles,
+          userPermissions: permissions,
+          requiredRoles: route.requiredRoles,
+          requiredPermissions: route.requiredPermissions,
+        })
+      )
+      .map((route) => ({
+        type: 'collapse',
+        name: route.name || route.path.replace('/', ''),
+        key: route.path.replace('/', ''),
+        route: route.path,
+        // Aquí podrías agregar más propiedades del sidebar como icon, etc.
+      }))
+  }, [routes, roles, permissions])
+
+  return { sidebarRoutes, loading }
 }

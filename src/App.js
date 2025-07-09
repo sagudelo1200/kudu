@@ -11,14 +11,13 @@ import authRoutes from 'routes/static/auth.routes'
 
 // 🧩 Extras
 import LoadingPage from 'components/LoadingPage'
-import Unauthorized from 'pages/Unauthorized'
 
 export default function App() {
   const location = useLocation()
   const { pathname } = location
 
   const { routes, loading: routesLoading } = useDynamicRoutes()
-  const { loading: authLoading } = useAuth()
+  const { user, loading: authLoading } = useAuth()
 
   const isLoading = routesLoading || authLoading
 
@@ -31,7 +30,7 @@ export default function App() {
 
   return (
     <Routes>
-      {/* 📌 Rutas públicas (auth, etc.) */}
+      {/* 📌 Rutas públicas (auth, unauthorized, etc.) */}
       {authRoutes.map((route) => (
         <Route key={route.path} path={route.path} element={route.element}>
           {route.children?.map((child) => (
@@ -40,7 +39,7 @@ export default function App() {
         </Route>
       ))}
 
-      {/* 🔐 Rutas protegidas */}
+      {/* 🔐 Rutas protegidas dinámicas */}
       {routes.map(
         ({ path, element, layout, requiredRoles, requiredPermissions }) => (
           <Route
@@ -50,6 +49,7 @@ export default function App() {
               <ProtectedRoute
                 requiredRoles={requiredRoles}
                 requiredPermissions={requiredPermissions}
+                path={path}
               >
                 {element}
               </ProtectedRoute>
@@ -58,11 +58,29 @@ export default function App() {
         )
       )}
 
-      {/* ❌ Acceso denegado */}
-      <Route path='/unauthorized' element={<Unauthorized />} />
+      {/* 🚪 Redirecciones inteligentes */}
+      <Route
+        path='/'
+        element={
+          user ? (
+            <Navigate to='/kudu' replace />
+          ) : (
+            <Navigate to='/auth/login' replace />
+          )
+        }
+      />
 
-      {/* 🚪 Redirección por defecto */}
-      <Route path='*' element={<Navigate to='/kudu' replace />} />
+      {/* 🚪 Fallback para rutas no encontradas */}
+      <Route
+        path='*'
+        element={
+          user ? (
+            <Navigate to='/kudu' replace />
+          ) : (
+            <Navigate to='/auth/login' replace />
+          )
+        }
+      />
     </Routes>
   )
 }
