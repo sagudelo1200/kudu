@@ -14,42 +14,42 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 3 PRO React base styles
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors'
 
 // Material Dashboard 3 PRO React helper functions
-import rgba from "assets/theme/functions/rgba";
+import rgba from 'assets/theme/functions/rgba'
 
-const { info, white, gradients } = colors;
+const { info, white, gradients } = colors
 
 const flatpickr = {
-  ".flatpickr-day:hover, .flatpickr-day:focus, .flatpickr-day.nextMonthDay:hover, .flatpickr-day.nextMonthDay:focus":
-  {
-    background: rgba(info.main, 0.28),
-    border: "none",
-  },
+  '.flatpickr-day:hover, .flatpickr-day:focus, .flatpickr-day.nextMonthDay:hover, .flatpickr-day.nextMonthDay:focus':
+    {
+      background: rgba(info.main, 0.28),
+      border: 'none',
+    },
 
-  ".flatpickr-day.today": {
+  '.flatpickr-day.today': {
     background: info.main,
     color: white.main,
-    border: "none",
+    border: 'none',
 
-    "&:hover, &:focus": {
+    '&:hover, &:focus': {
       background: `${info.focus} !important`,
     },
   },
 
-  ".flatpickr-day.selected, .flatpickr-day.selected:hover, .flatpickr-day.nextMonthDay.selected, .flatpickr-day.nextMonthDay.selected:hover, .flatpickr-day.nextMonthDay.selected:focus":
-  {
-    background: `${gradients.info.state} !important`,
-    color: white.main,
-    border: "none",
-  },
+  '.flatpickr-day.selected, .flatpickr-day.selected:hover, .flatpickr-day.nextMonthDay.selected, .flatpickr-day.nextMonthDay.selected:hover, .flatpickr-day.nextMonthDay.selected:focus':
+    {
+      background: `${gradients.info.state} !important`,
+      color: white.main,
+      border: 'none',
+    },
 
-  ".flatpickr-months .flatpickr-next-month:hover svg, .flatpickr-months .flatpickr-prev-month:hover svg":
-  {
-    color: `${info.main} !important`,
-    fill: `${info.main} !important`,
-  },
-};
+  '.flatpickr-months .flatpickr-next-month:hover svg, .flatpickr-months .flatpickr-prev-month:hover svg':
+    {
+      color: `${info.main} !important`,
+      fill: `${info.main} !important`,
+    },
+}
 
-export default flatpickr;
+export default flatpickr

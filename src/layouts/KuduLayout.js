@@ -22,7 +22,8 @@ import brandDark from 'assets/images/logo-ct-dark.png'
 import BaseContainer from 'components/BaseContainer'
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 
-function KuduLayout({ routes }) { // Recibimos las rutas como prop
+function KuduLayout({ routes }) {
+  // Recibimos las rutas como prop
   const [controller, dispatch] = useMaterialUIController()
   const {
     miniSidenav,

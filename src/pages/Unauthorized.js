@@ -1,12 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import MDBox from 'components/MDBox'
+import MDTypography from 'components/MDTypography'
+import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
-export default function Unauthorized() {
+function Unauthorized() {
+  const navigate = useNavigate()
+
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>Acceso denegado</h1>
-      <p>No tienes los permisos necesarios para acceder a esta página.</p>
-      <Link to='/'>Volver al inicio</Link>
-    </div>
+    <MDBox py={6} px={3} textAlign='center'>
+      <MDTypography variant='h2' color='error' mb={1}>
+        🚫 Acceso Denegado
+      </MDTypography>
+      <MDTypography variant='body1' color='text' mb={4}>
+        No tienes los permisos necesarios para ver esta página.
+      </MDTypography>
+      <Button variant='contained' color='primary' onClick={() => navigate('/')}>
+        Volver al inicio
+      </Button>
+    </MDBox>
   )
 }
+
+export default Unauthorized

@@ -15,7 +15,7 @@ const root = createRoot(container)
 root.render(
   <BrowserRouter>
     <MaterialUIControllerProvider>
-      <AuthProvider> {/* Envolvemos la aplicación con AuthProvider */}
+      <AuthProvider>
         <App />
       </AuthProvider>
     </MaterialUIControllerProvider>
