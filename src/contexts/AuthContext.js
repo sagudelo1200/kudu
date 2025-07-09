@@ -1,6 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from 'firebaseApp'
+import { auth, db } from 'firebaseApp'
 
 const AuthContext = createContext()
 
@@ -8,30 +13,48 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [roles, setRoles] = useState([])
   const [permissions, setPermissions] = useState([])
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
-    async function fetchUserData() {
-      const userId = 'YkrJqORD20hylp1QuQFqR1Lj9Dv2' // ID del usuario actual (simulado)
-
-      try {
-        const userDoc = await getDoc(doc(db, 'usuarios', userId))
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        setLoading(true)
+        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid))
         if (userDoc.exists()) {
-          const userData = userDoc.data()
-          setUser(userData)
-          setRoles(userData.roles || [])
-          setPermissions(userData.permissions || [])
+          const data = userDoc.data()
+          setUser({ uid: firebaseUser.uid, email: firebaseUser.email, ...data })
+          setRoles(data.roles || [])
+          setPermissions(data.permissions || [])
         } else {
-          console.error('El usuario no existe en Firestore.')
+          console.warn(
+            'Usuario no encontrado en Firestore. UID:',
+            firebaseUser.uid
+          )
+          setUser({ uid: firebaseUser.uid, email: firebaseUser.email })
         }
-      } catch (error) {
-        console.error('Error al obtener los datos del usuario:', error)
+      } else {
+        setUser(null)
+        setRoles([])
+        setPermissions([])
       }
-    }
+      setLoading(false)
+    })
 
-    fetchUserData()
+    return () => unsubscribe()
   }, [])
 
+  async function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  async function logout() {
+    await signOut(auth)
+  }
+
   return (
-    <AuthContext.Provider value={{ user, roles, permissions }}>
+    <AuthContext.Provider
+      value={{ user, roles, permissions, loading, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   )
@@ -39,9 +62,6 @@ export function AuthProvider({ children }) {
 
 export function useAuth() {
   const context = useContext(AuthContext)
-  if (!context) {
-    console.error('useAuth debe ser usado dentro de un AuthProvider')
-    return { user: null, roles: [], permissions: [] } // Valores predeterminados
-  }
+  if (!context) throw new Error('useAuth debe ser usado dentro de AuthProvider')
   return context
 }

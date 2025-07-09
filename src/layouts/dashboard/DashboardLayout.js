@@ -3,26 +3,28 @@ import { useLocation, Outlet } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import Icon from '@mui/material/Icon'
+
 import MDBox from 'components/MDBox'
 import Footer from 'examples/Footer'
 import Sidenav from 'examples/Sidenav'
 import Configurator from 'examples/Configurator'
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
+import BaseContainer from 'components/BaseContainer'
+
 import {
   useMaterialUIController,
   setLayout,
   setMiniSidenav,
   setOpenConfigurator,
 } from 'contexts'
+
 import theme from 'assets/theme'
 import themeDark from 'assets/theme-dark'
 
-// Brand images
 import brandWhite from 'assets/images/logo-ct.png'
 import brandDark from 'assets/images/logo-ct-dark.png'
-import BaseContainer from 'components/BaseContainer'
-import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 
-function DashboardLayout({ routes }) { // Recibimos las rutas como prop
+function DashboardLayout({ routes = [] }) {
   const [controller, dispatch] = useMaterialUIController()
   const {
     miniSidenav,
@@ -33,10 +35,25 @@ function DashboardLayout({ routes }) { // Recibimos las rutas como prop
     whiteSidenav,
     openConfigurator,
   } = controller
+
   const { pathname } = useLocation()
   const [onMouseEnter, setOnMouseEnter] = useState(false)
 
-  // Open sidenav when mouse enters mini sidenav
+  useEffect(() => {
+    setLayout(dispatch, 'dashboard')
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
+
+  useEffect(() => {
+    document.body.setAttribute('dir', direction)
+  }, [direction])
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0
+    document.scrollingElement.scrollTop = 0
+  }, [pathname])
+
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
       setMiniSidenav(dispatch, false)
@@ -44,7 +61,6 @@ function DashboardLayout({ routes }) { // Recibimos las rutas como prop
     }
   }
 
-  // Close sidenav when mouse leaves mini sidenav
   const handleOnMouseLeave = () => {
     if (onMouseEnter) {
       setMiniSidenav(dispatch, true)
@@ -52,28 +68,9 @@ function DashboardLayout({ routes }) { // Recibimos las rutas como prop
     }
   }
 
-  // Toggle configurator
   const handleConfiguratorOpen = () =>
     setOpenConfigurator(dispatch, !openConfigurator)
 
-  // Set layout type
-  useEffect(() => {
-    setLayout(dispatch, 'dashboard')
-    // eslint-disable-next-line
-  }, [pathname])
-
-  // Set direction attribute for body
-  useEffect(() => {
-    document.body.setAttribute('dir', direction)
-  }, [direction])
-
-  // Scroll to top on route change
-  useEffect(() => {
-    document.documentElement.scrollTop = 0
-    document.scrollingElement.scrollTop = 0
-  }, [pathname])
-
-  // Configurator button
   const configsButton = (
     <MDBox
       display='flex'
@@ -108,8 +105,8 @@ function DashboardLayout({ routes }) { // Recibimos las rutas como prop
             ? brandDark
             : brandWhite
         }
-        brandName='Dash Layout'
-        routes={routes} // Usamos las rutas pasadas como prop
+        brandName='Dash Kudu'
+        routes={routes}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       />
