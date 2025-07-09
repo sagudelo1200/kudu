@@ -27,6 +27,7 @@
     "draft-js": "0.11.7",
     "dropzone": "6.0.0-beta.2",
     "firebase": "^11.6.1",
+    "firebase-admin": "^13.4.0",
     "flatpickr": "4.6.13",
     "formik": "2.4.6",
     "html-react-parser": "5.1.18",
