@@ -54,9 +54,13 @@ import {
   setOpenConfigurator,
 } from 'contexts'
 
+// Auth context para logout
+import { useAuth } from 'contexts/AuthContext'
+
 function DashboardNavbar({ absolute = false, light = false, isMini = false }) {
   const [navbarType, setNavbarType] = useState()
   const [controller, dispatch] = useMaterialUIController()
+  const { logout } = useAuth()
   const {
     miniSidenav,
     transparentNavbar,
@@ -66,6 +70,11 @@ function DashboardNavbar({ absolute = false, light = false, isMini = false }) {
   } = controller
   const [openMenu, setOpenMenu] = useState(false)
   const route = useLocation().pathname.split('/').slice(1)
+
+  // Función para cerrar sesión
+  const handleLogout = () => {
+    logout()
+  }
 
   useEffect(() => {
     // Setting the navbar type
@@ -171,11 +180,15 @@ function DashboardNavbar({ absolute = false, light = false, isMini = false }) {
               <MDInput label='Buscar...' />
             </MDBox> */}
             <MDBox color={light ? 'white' : 'inherit'}>
-              <Link to=''>
-                <IconButton sx={navbarIconButton} size='small' disableRipple>
-                  <Icon sx={iconsStyle}>account_circle</Icon>
-                </IconButton>
-              </Link>
+              <IconButton
+                sx={navbarIconButton}
+                size='small'
+                disableRipple
+                onClick={handleLogout}
+                title='Cerrar sesión'
+              >
+                <Icon sx={iconsStyle}>logout</Icon>
+              </IconButton>
               <IconButton
                 size='small'
                 disableRipple
