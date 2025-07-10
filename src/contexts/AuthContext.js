@@ -24,7 +24,22 @@ export function AuthProvider({ children }) {
           const data = userDoc.data()
           setUser({ uid: firebaseUser.uid, email: firebaseUser.email, ...data })
           setRoles(data.roles || [])
-          setPermissions(data.permissions || [])
+
+          // Cargar permisos heredados de cada rol
+          const rolePerms = []
+          if (data.roles && data.roles.length > 0) {
+            for (const roleId of data.roles) {
+              const roleDoc = await getDoc(doc(db, 'roles', roleId))
+              if (roleDoc.exists()) {
+                const perms = roleDoc.data().permissions || []
+                rolePerms.push(...perms)
+              }
+            }
+          }
+          // Combinar permisos directos y heredados, eliminando duplicados
+          const direct = data.permissions || []
+          const combined = Array.from(new Set([...direct, ...rolePerms]))
+          setPermissions(combined)
         } else {
           console.warn(
             'Usuario no encontrado en Firestore. UID:',

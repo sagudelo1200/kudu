@@ -1,3 +1,16 @@
+// Convertir patrón con '*' a una expresión regular y testear coincidencia
+function matchesPattern(pattern, value) {
+  try {
+    // Escapar puntos y reemplazar '*' por '.*'
+    const regex = new RegExp(
+      `^${pattern.replace(/\./g, '\\.').replace(/\*/g, '.*')}$`
+    )
+    return regex.test(value)
+  } catch {
+    return false
+  }
+}
+
 export function canAccess({
   userRoles = [],
   userPermissions = [],
@@ -16,13 +29,16 @@ export function canAccess({
     requiredRoles.length === 0 ||
     requiredRoles.every((role) => userRoles.includes(role))
 
-  // ✅ PERMISOS: Debe tener AL MENOS UN permiso (acción específica)
-  // O TODOS si requireAllPermissions es true (para operaciones críticas)
+  // ✅ PERMISOS: Matching con wildcard
   const hasRequiredPermissions =
     requiredPermissions.length === 0 ||
     (requireAllPermissions
-      ? requiredPermissions.every((perm) => userPermissions.includes(perm))
-      : requiredPermissions.some((perm) => userPermissions.includes(perm)))
+      ? requiredPermissions.every((perm) =>
+          userPermissions.some((up) => matchesPattern(up, perm))
+        )
+      : requiredPermissions.some((perm) =>
+          userPermissions.some((up) => matchesPattern(up, perm))
+        ))
 
   const accessGranted = hasAllRequiredRoles && hasRequiredPermissions
 
