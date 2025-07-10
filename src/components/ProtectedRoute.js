@@ -8,6 +8,7 @@ export default function ProtectedRoute({
   children,
   requiredRoles = [],
   requiredPermissions = [],
+  requireAllPermissions = false,
 }) {
   const { user, roles, permissions, loading } = useAuth()
   const location = useLocation()
@@ -29,6 +30,7 @@ export default function ProtectedRoute({
     userPermissions: permissions,
     requiredRoles,
     requiredPermissions,
+    requireAllPermissions,
   })
 
   if (!hasAccess) {
