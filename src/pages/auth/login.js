@@ -26,9 +26,18 @@ function Login() {
     try {
       await login(email, password)
 
-      // Redirigir a la ruta original o a /kudu por defecto
-      const from = location.state?.from?.pathname || '/kudu'
-      navigate(from, { replace: true })
+      // 🧭 Navegación inteligente post-login
+      const intendedPath = localStorage.getItem('kudu_intended_path')
+      const lastPath = localStorage.getItem('kudu_last_path')
+      const fromState = location.state?.from?.pathname
+
+      // 🎯 Prioridad: ruta intentada > ruta desde state > última ruta > /kudu
+      const redirectTo = intendedPath || fromState || lastPath || '/kudu'
+
+      // 🧹 Limpiar ruta intentada después de usarla
+      localStorage.removeItem('kudu_intended_path')
+
+      navigate(redirectTo, { replace: true })
     } catch (err) {
       setError('Correo o contraseña incorrectos')
     } finally {

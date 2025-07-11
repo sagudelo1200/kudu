@@ -88,7 +88,9 @@ export function AuthProvider({ children }) {
    * @returns {Promise} Resultado de autenticación Firebase
    */
   async function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password)
+    const result = await signInWithEmailAndPassword(auth, email, password)
+    // 🧭 Después del login exitoso, limpiar ruta intentada para permitir redirección inteligente
+    return result
   }
 
   /**
@@ -97,6 +99,9 @@ export function AuthProvider({ children }) {
    * @returns {Promise} Resultado de logout Firebase
    */
   async function logout() {
+    // 🧹 Limpiar datos de navegación al cerrar sesión
+    localStorage.removeItem('kudu_last_path')
+    localStorage.removeItem('kudu_intended_path')
     await signOut(auth)
   }
 

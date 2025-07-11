@@ -33,11 +33,44 @@ export default function App() {
   // 🦌 Control de carga unificado
   const isLoading = routesLoading || authLoading
 
+  // 🧭 Navegación inteligente
+  const getSmartRedirect = () => {
+    if (user) {
+      // 🎯 Scout autenticado - buscar última ruta válida o ir a /kudu
+      const lastPath = localStorage.getItem('kudu_last_path')
+      const isValidPath =
+        lastPath && routes.some((route) => route.path === lastPath)
+      return isValidPath ? lastPath : '/kudu'
+    } else {
+      // 🚪 Scout no autenticado - guardar intento de acceso y redirigir a login
+      if (pathname !== '/' && pathname !== '/auth/login') {
+        localStorage.setItem('kudu_intended_path', pathname)
+      }
+      return '/auth/login'
+    }
+  }
+
   // 🌟 Reset scroll en cada cambio de ruta
   useEffect(() => {
     document.documentElement.scrollTop = 0
     document.scrollingElement.scrollTop = 0
   }, [pathname])
+
+  // 🧭 Guardar última ruta válida para navegación inteligente
+  useEffect(() => {
+    if (
+      user &&
+      pathname !== '/' &&
+      pathname !== '/auth/login' &&
+      pathname !== '/unauthorized'
+    ) {
+      // 🎯 Solo guardar si el scout tiene acceso a esta ruta
+      const hasAccess = routes.some((route) => route.path === pathname)
+      if (hasAccess) {
+        localStorage.setItem('kudu_last_path', pathname)
+      }
+    }
+  }, [pathname, user, routes])
 
   // 🔄 Mostrar loading mientras Kudu se prepara
   if (isLoading) return <LoadingPage />
@@ -81,28 +114,10 @@ export default function App() {
       )}
 
       {/* 🚪 Redirección inteligente raíz */}
-      <Route
-        path='/'
-        element={
-          user ? (
-            <Navigate to='/kudu' replace />
-          ) : (
-            <Navigate to='/auth/login' replace />
-          )
-        }
-      />
+      <Route path='/' element={<Navigate to={getSmartRedirect()} replace />} />
 
-      {/* 🚪 Fallback - guía a scouts perdidos */}
-      <Route
-        path='*'
-        element={
-          user ? (
-            <Navigate to='/kudu' replace />
-          ) : (
-            <Navigate to='/auth/login' replace />
-          )
-        }
-      />
+      {/* 🚪 Fallback inteligente - guía a scouts perdidos */}
+      <Route path='*' element={<Navigate to={getSmartRedirect()} replace />} />
     </Routes>
   )
 }
