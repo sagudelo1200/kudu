@@ -10,6 +10,7 @@ import Sidenav from 'examples/Sidenav'
 import Configurator from 'examples/Configurator'
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
 import BaseContainer from 'components/BaseContainer'
+import { useSidebarRoutes } from 'routes/dynamic/useDynamicRoutes'
 
 import {
   useMaterialUIController,
@@ -24,7 +25,7 @@ import themeDark from 'assets/theme-dark'
 import brandWhite from 'assets/images/logo-ct.png'
 import brandDark from 'assets/images/logo-ct-dark.png'
 
-function DashboardLayout({ routes = [] }) {
+function DashboardLayout() {
   const [controller, dispatch] = useMaterialUIController()
   const {
     miniSidenav,
@@ -38,6 +39,7 @@ function DashboardLayout({ routes = [] }) {
 
   const { pathname } = useLocation()
   const [onMouseEnter, setOnMouseEnter] = useState(false)
+  const { sidebarRoutes } = useSidebarRoutes()
 
   useEffect(() => {
     setLayout(dispatch, 'dashboard')
@@ -105,8 +107,8 @@ function DashboardLayout({ routes = [] }) {
             ? brandDark
             : brandWhite
         }
-        brandName='Dash Kudu'
-        routes={routes}
+        brandName='Kudu Dash'
+        routes={sidebarRoutes}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       />

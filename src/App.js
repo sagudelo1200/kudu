@@ -41,7 +41,7 @@ export default function App() {
 
       {/* 🔐 Rutas protegidas dinámicas */}
       {routes.map(
-        ({ path, element, layout, requiredRoles, requiredPermissions }) => (
+        ({ path, element, children, requiredRoles, requiredPermissions }) => (
           <Route
             key={path}
             path={path}
@@ -54,7 +54,15 @@ export default function App() {
                 {element}
               </ProtectedRoute>
             }
-          />
+          >
+            {children?.map((child) => (
+              <Route
+                key={child.path}
+                path={child.path}
+                element={child.element}
+              />
+            ))}
+          </Route>
         )
       )}
 

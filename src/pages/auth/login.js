@@ -106,17 +106,6 @@ function Login() {
               {loading ? 'Ingresando...' : 'Entrar'}
             </MDButton>
           </MDBox>
-
-          <MDBox textAlign='center'>
-            <MDButton
-              variant='outlined'
-              color='secondary'
-              onClick={handleLogout}
-              size='small'
-            >
-              Cerrar sesión
-            </MDButton>
-          </MDBox>
         </MDBox>
       </CardContent>
     </Card>

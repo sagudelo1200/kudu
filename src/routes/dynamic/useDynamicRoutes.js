@@ -7,54 +7,68 @@ import { canAccess } from 'utils/access'
 import componentMap from './componentMap'
 import layoutMap from './layoutMap'
 
+// 🔥 Función granular: Procesar documento de ruta
+function processRouteDoc(doc) {
+  const data = doc.data()
+
+  const Component = componentMap[data.component]
+  const Layout = layoutMap[data.layout?.toLowerCase()] || layoutMap['dashboard']
+
+  if (!data.route || !Component || !Layout) {
+    console.warn(`⚠️ Ruta incompleta: ${data.route}`)
+    return null
+  }
+
+  // 🎯 Usar la misma estructura que auth.routes.js
+  const processedRoute = {
+    path: data.route,
+    element: <Layout />,
+    children: [{ path: '', element: <Component /> }],
+    name: data.name || data.route.replace('/', ''),
+    icon: data.icon || 'dashboard',
+    requiredRoles: data.roles || [],
+    requiredPermissions: data.permissions || [],
+  }
+
+  return processedRoute
+}
+
+// 🔥 Función granular: Convertir ruta a formato sidebar
+function routeToSidebarFormat(route) {
+  return {
+    type: 'collapse',
+    name: route.name,
+    key: route.path.replace('/', ''),
+    route: route.path,
+    icon: route.icon,
+    noCollapse: true,
+  }
+}
+
 export default function useDynamicRoutes() {
   const [routes, setRoutes] = useState([])
   const [loading, setLoading] = useState(true)
   const { loading: authLoading } = useAuth()
 
   useEffect(() => {
-    // No ejecutar si aún no cargan los datos del usuario
     if (authLoading) return
 
     const unsubscribe = onSnapshot(collection(db, 'routes'), (snapshot) => {
-      const result = []
+      const processedRoutes = snapshot.docs.map(processRouteDoc).filter(Boolean)
 
-      snapshot.forEach((doc) => {
-        const data = doc.data()
-
-        const Layout =
-          layoutMap[data.layout?.toLowerCase()] || (({ children }) => children)
-        const Component = componentMap[data.component]
-
-        if (data.route && Component) {
-          result.push({
-            path: data.route,
-            element: (
-              <Layout>
-                <Component />
-              </Layout>
-            ),
-            requiredRoles: data.roles || [],
-            requiredPermissions: data.permissions || [],
-          })
-        } else {
-          console.warn(`⚠️ Ruta incompleta: ${data.route} - Falta componente`)
-        }
-      })
-
-      setRoutes(result)
+      setRoutes(processedRoutes)
       setLoading(false)
     })
 
     return () => unsubscribe()
-  }, [authLoading]) // 🚨 Removemos roles y permissions del dependency array
+  }, [authLoading])
 
   return { routes, loading }
 }
 
 // 🎯 Hook especializado para el sidebar (SÍ filtra por permisos)
 export function useSidebarRoutes() {
-  const { routes, loading } = useDynamicRoutes()
+  const { routes } = useDynamicRoutes()
   const { roles, permissions } = useAuth()
 
   const sidebarRoutes = useMemo(() => {
@@ -67,14 +81,8 @@ export function useSidebarRoutes() {
           requiredPermissions: route.requiredPermissions,
         })
       )
-      .map((route) => ({
-        type: 'collapse',
-        name: route.name || route.path.replace('/', ''),
-        key: route.path.replace('/', ''),
-        route: route.path,
-        // Aquí podrías agregar más propiedades del sidebar como icon, etc.
-      }))
+      .map(routeToSidebarFormat)
   }, [routes, roles, permissions])
 
-  return { sidebarRoutes, loading }
+  return { sidebarRoutes }
 }
