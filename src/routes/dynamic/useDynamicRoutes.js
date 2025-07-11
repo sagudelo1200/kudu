@@ -7,6 +7,30 @@ import { canAccess } from 'utils/access'
 import componentMap from './componentMap'
 import layoutMap from './layoutMap'
 
+// 🔥 Función granular: Crear rutas de sub-collapse
+function createSubRoutes(parentRoute) {
+  if (!parentRoute.collapse || parentRoute.collapse.length === 0) {
+    return []
+  }
+
+  return parentRoute.collapse.map((subRoute) => {
+    const Layout = layoutMap['dashboard'] // Sub-rutas usan dashboard layout
+    const Component = componentMap['TestPage'] // Por ahora todas usan TestPage
+
+    return {
+      path: subRoute.route,
+      element: <Layout />,
+      children: [{ path: '', element: <Component /> }],
+      name: subRoute.name,
+      icon: 'arrow_right',
+      requiredRoles: parentRoute.requiredRoles, // Heredan permisos del padre
+      requiredPermissions: subRoute.permissions || [],
+      isSubRoute: true,
+      parentRoute: parentRoute.path,
+    }
+  })
+}
+
 // 🔥 Función granular: Procesar documento de ruta
 function processRouteDoc(doc) {
   const data = doc.data()
@@ -28,6 +52,10 @@ function processRouteDoc(doc) {
     icon: data.icon || 'dashboard',
     requiredRoles: data.roles || [],
     requiredPermissions: data.permissions || [],
+    // 🔥 Capturar datos de collapse desde Firestore
+    collapse: data.collapse || null,
+    showInSidebar: data.showInSidebar !== false,
+    order: data.order || 0,
   }
 
   return processedRoute
@@ -35,14 +63,28 @@ function processRouteDoc(doc) {
 
 // 🔥 Función granular: Convertir ruta a formato sidebar
 function routeToSidebarFormat(route) {
-  return {
+  const hasCollapse = route.collapse && route.collapse.length > 0
+
+  const sidebarRoute = {
     type: 'collapse',
     name: route.name,
     key: route.path.replace('/', ''),
     route: route.path,
     icon: route.icon,
-    noCollapse: true,
+    noCollapse: !hasCollapse, // 🎯 Solo noCollapse si NO tiene sub-rutas
   }
+
+  // 🔥 Si tiene collapse, agregarlo al formato sidebar
+  if (hasCollapse) {
+    sidebarRoute.collapse = route.collapse.map((subRoute) => ({
+      name: subRoute.name,
+      route: subRoute.route,
+      key: subRoute.key,
+      href: null, // Las sub-rutas son internas, no enlaces externos
+    }))
+  }
+
+  return sidebarRoute
 }
 
 export default function useDynamicRoutes() {
@@ -54,9 +96,15 @@ export default function useDynamicRoutes() {
     if (authLoading) return
 
     const unsubscribe = onSnapshot(collection(db, 'routes'), (snapshot) => {
-      const processedRoutes = snapshot.docs.map(processRouteDoc).filter(Boolean)
+      const mainRoutes = snapshot.docs.map(processRouteDoc).filter(Boolean)
 
-      setRoutes(processedRoutes)
+      // 🔥 Crear sub-rutas para cada ruta con collapse
+      const subRoutes = mainRoutes.flatMap(createSubRoutes)
+
+      // 🎯 Combinar rutas principales y sub-rutas
+      const allRoutes = [...mainRoutes, ...subRoutes]
+
+      setRoutes(allRoutes)
       setLoading(false)
     })
 
@@ -72,7 +120,10 @@ export function useSidebarRoutes() {
   const { roles, permissions } = useAuth()
 
   const sidebarRoutes = useMemo(() => {
-    return routes
+    // 🔥 Filtrar solo rutas principales (no sub-rutas)
+    const mainRoutes = routes.filter((route) => !route.isSubRoute)
+
+    return mainRoutes
       .filter((route) =>
         canAccess({
           userRoles: roles,
@@ -81,6 +132,7 @@ export function useSidebarRoutes() {
           requiredPermissions: route.requiredPermissions,
         })
       )
+      .sort((a, b) => (a.order || 0) - (b.order || 0)) // 🎯 Ordenar por orden
       .map(routeToSidebarFormat)
   }, [routes, roles, permissions])
 
