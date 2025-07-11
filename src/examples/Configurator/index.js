@@ -171,7 +171,7 @@ function Configurator() {
 
       <Divider />
 
-      <MDBox pt={0.5} pb={3} px={3}>
+      <MDBox pt={0.3} pb={3} px={3}>
         <MDBox>
           <MDTypography variant='h6'>Colores de la barra lateral</MDTypography>
 
@@ -226,7 +226,7 @@ function Configurator() {
           </MDBox>
         </MDBox>
 
-        {/* <MDBox mt={3} lineHeight={1}>
+        <MDBox display='none' mt={3} lineHeight={1}>
           <MDTypography variant='h6'>Tipo de barra lateral</MDTypography>
           <MDTypography variant='button' color='text'>
             Selecciona uno de los 3 tipos
@@ -284,7 +284,7 @@ function Configurator() {
               Claro
             </MDButton>
           </MDBox>
-        </MDBox> */}
+        </MDBox>
         <Divider />
         <MDBox
           display='flex'
@@ -309,8 +309,8 @@ function Configurator() {
           <Switch checked={miniSidenav} onChange={handleMiniSidenav} />
         </MDBox>
         <Divider />
-        {/* <MDBox
-          display='flex'
+        <MDBox
+          display='none'
           justifyContent='space-between'
           alignItems='center'
           lineHeight={1}
@@ -319,7 +319,6 @@ function Configurator() {
 
           <Switch checked={darkMode} onChange={handleDarkMode} />
         </MDBox>
-        <Divider /> */}
       </MDBox>
     </ConfiguratorRoot>
   )

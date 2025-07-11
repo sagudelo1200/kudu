@@ -107,7 +107,7 @@ function DashboardLayout() {
             ? brandDark
             : brandWhite
         }
-        brandName='Kudu Dash'
+        brandName='Dash Layout'
         routes={sidebarRoutes}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
