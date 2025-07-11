@@ -6,9 +6,7 @@ function DashboardPage() {
   return (
     <>
       <MDTypography variant='h4'>Bienvenido al Dashboard</MDTypography>
-      <MDTypography>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </MDTypography>
+      <MDTypography>PAGE</MDTypography>
     </>
   )
 }

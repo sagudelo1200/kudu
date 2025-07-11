@@ -1,9 +1,9 @@
 import DashboardLayout from 'layouts/dashboard/DashboardLayout'
-import AuthLayout from 'layouts/auth/AuthLayout'
 
 const layoutMap = {
   dashboard: DashboardLayout,
-  auth: AuthLayout,
+  auth: DashboardLayout,
+  kudu: DashboardLayout,
 }
 
 export default layoutMap

@@ -14,8 +14,10 @@ function createSubRoutes(parentRoute) {
   }
 
   return parentRoute.collapse.map((subRoute) => {
-    const Layout = layoutMap['dashboard'] // Sub-rutas usan dashboard layout
-    const Component = componentMap['TestPage'] // Por ahora todas usan TestPage
+    const Layout =
+      layoutMap[parentRoute.layout?.toLowerCase()] || layoutMap['dashboard']
+    const Component =
+      componentMap[subRoute.component] || componentMap['TestPage']
 
     return {
       path: subRoute.route,
@@ -23,7 +25,7 @@ function createSubRoutes(parentRoute) {
       children: [{ path: '', element: <Component /> }],
       name: subRoute.name,
       icon: 'arrow_right',
-      requiredRoles: parentRoute.requiredRoles, // Heredan permisos del padre
+      requiredRoles: parentRoute.requiredRoles,
       requiredPermissions: subRoute.permissions || [],
       isSubRoute: true,
       parentRoute: parentRoute.path,

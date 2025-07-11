@@ -171,7 +171,7 @@ const colors = {
 
     dark: {
       main: '#323a54',
-      state: '#1a2035',
+      state: '#CED4DA',
     },
 
     familia: {

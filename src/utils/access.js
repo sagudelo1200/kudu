@@ -20,7 +20,6 @@ export function canAccess({
 }) {
   // 🦌 Super usuario tiene acceso total (para emergencias/administración)
   if (userRoles.includes('super')) {
-    console.log('La magía de Kudu permite el acceso total al super usuario.')
     return true
   }
 
