@@ -1,7 +1,15 @@
-// Convertir patrón con '*' a una expresión regular y testear coincidencia
+/**
+ * 🦌 Validador de Patrones con Wildcard
+ *
+ * Convierte patrón con '*' a regex y testea coincidencia
+ *
+ * @param {string} pattern - Patrón con wildcards (ej: "admin.*")
+ * @param {string} value - Valor a testear (ej: "admin.users.read")
+ * @returns {boolean} Si el valor coincide con el patrón
+ */
 function matchesPattern(pattern, value) {
   try {
-    // Escapar puntos y reemplazar '*' por '.*'
+    // 🎯 Escapar puntos y reemplazar '*' por '.*'
     const regex = new RegExp(
       `^${pattern.replace(/\./g, '\\.').replace(/\*/g, '.*')}$`
     )
@@ -11,12 +19,26 @@ function matchesPattern(pattern, value) {
   }
 }
 
+/**
+ * 🦌 Validador Central de Acceso Scout
+ *
+ * Función granular que determina si un scout puede acceder a un recurso
+ *
+ * @param {Array} userRoles - Roles del scout actual
+ * @param {Array} userPermissions - Permisos del scout actual
+ * @param {Array} requiredRoles - Roles requeridos para el acceso
+ * @param {Array} requiredPermissions - Permisos requeridos
+ * @param {boolean} requireAllPermissions - Si requiere TODOS los permisos
+ * @returns {boolean} Si el acceso está permitido
+ *
+ * 🪶 El guardián silencioso que protege cada sendero scout
+ */
 export function canAccess({
   userRoles = [],
   userPermissions = [],
   requiredRoles = [],
   requiredPermissions = [],
-  requireAllPermissions = false, // Nueva opción para casos especiales
+  requireAllPermissions = false, // 🎯 Para casos especiales
 }) {
   // 🦌 Super usuario tiene acceso total (para emergencias/administración)
   if (userRoles.includes('super')) {
@@ -28,7 +50,7 @@ export function canAccess({
     requiredRoles.length === 0 ||
     requiredRoles.every((role) => userRoles.includes(role))
 
-  // ✅ PERMISOS: Matching con wildcard
+  // ✅ PERMISOS: Matching con wildcard inteligente
   const hasRequiredPermissions =
     requiredPermissions.length === 0 ||
     (requireAllPermissions
@@ -41,6 +63,7 @@ export function canAccess({
 
   const accessGranted = hasAllRequiredRoles && hasRequiredPermissions
 
+  // 🚫 Log de acceso denegado para debugging
   if (!accessGranted) {
     if (!hasAllRequiredRoles) {
       console.error('❌ Falta jerarquía/contexto requerido')

@@ -11,10 +11,21 @@ import { CssBaseline } from '@mui/material'
 import theme from 'assets/theme'
 import themeDark from 'assets/theme-dark'
 
+/**
+ * 🦌 Página de Carga Scout
+ *
+ * Componente que mantiene la experiencia mientras Kudu se prepara
+ *
+ * @returns {JSX} Interfaz de carga con mensaje inspirador
+ *
+ * 🪶 Incluso la espera debe ser una experiencia digna del rugido
+ */
 export default function LoadingPage() {
-  // Detectar preferencia del sistema o usar tema oscuro por defecto
+  // 🎨 Detectar preferencia del sistema o usar tema oscuro por defecto
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   const selectedTheme = prefersDark ? themeDark : theme
+
+  // 🦌 Mensajes inspiradores mientras carga
   const loadingMessages = [
     '✨ No es magia... Es Kudu.',
     '🦌 Kudu toma posición… listo para avanzar.',

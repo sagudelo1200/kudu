@@ -7,7 +7,14 @@ import { canAccess } from 'utils/access'
 import componentMap from './componentMap'
 import layoutMap from './layoutMap'
 
-// 🔥 Función granular: Crear rutas de sub-collapse
+/**
+ * 🦌 Crear Sub-rutas de Collapse
+ *
+ * Convierte sub-elementos de collapse en rutas React válidas
+ *
+ * @param {Object} parentRoute - Ruta padre con collapse
+ * @returns {Array} Array de sub-rutas procesadas
+ */
 function createSubRoutes(parentRoute) {
   if (!parentRoute.collapse || parentRoute.collapse.length === 0) {
     return []
@@ -33,7 +40,14 @@ function createSubRoutes(parentRoute) {
   })
 }
 
-// 🔥 Función granular: Procesar documento de ruta
+/**
+ * 🦌 Procesar Documento de Ruta
+ *
+ * Convierte documento Firestore en ruta React válida
+ *
+ * @param {Object} doc - Documento de Firestore
+ * @returns {Object|null} Ruta procesada o null si es inválida
+ */
 function processRouteDoc(doc) {
   const data = doc.data()
 
@@ -45,7 +59,7 @@ function processRouteDoc(doc) {
     return null
   }
 
-  // 🎯 Usar la misma estructura que auth.routes.js
+  // 🎯 Estructura estándar de ruta Kudu
   const processedRoute = {
     path: data.route,
     element: <Layout />,
@@ -54,7 +68,7 @@ function processRouteDoc(doc) {
     icon: data.icon || 'dashboard',
     requiredRoles: data.roles || [],
     requiredPermissions: data.permissions || [],
-    // 🔥 Capturar datos de collapse desde Firestore
+    // 🔥 Datos adicionales de collapse y sidebar
     collapse: data.collapse || null,
     showInSidebar: data.showInSidebar !== false,
     order: data.order || 0,
@@ -63,7 +77,14 @@ function processRouteDoc(doc) {
   return processedRoute
 }
 
-// 🔥 Función granular: Convertir ruta a formato sidebar
+/**
+ * 🦌 Convertir Ruta a Formato Sidebar
+ *
+ * Transforma ruta interna a formato compatible con Sidenav
+ *
+ * @param {Object} route - Ruta interna procesada
+ * @returns {Object} Ruta en formato sidebar
+ */
 function routeToSidebarFormat(route) {
   const hasCollapse = route.collapse && route.collapse.length > 0
 
@@ -82,28 +103,40 @@ function routeToSidebarFormat(route) {
       name: subRoute.name,
       route: subRoute.route,
       key: subRoute.key,
-      href: null, // Las sub-rutas son internas, no enlaces externos
+      href: null, // 🎯 Sub-rutas son internas, no enlaces externos
     }))
   }
 
   return sidebarRoute
 }
 
+/**
+ * 🦌 Rutas Dinámicas Principal
+ *
+ * Hook que carga y procesa todas las rutas desde Firestore en tiempo real
+ *
+ * @returns {Object} {routes, loading} - Rutas procesadas y estado de carga
+ *
+ * 🪶 El navegante que conoce todos los senderos scout
+ */
 export default function useDynamicRoutes() {
   const [routes, setRoutes] = useState([])
   const [loading, setLoading] = useState(true)
   const { loading: authLoading } = useAuth()
 
   useEffect(() => {
+    // ⚠️ No cargar rutas hasta que auth esté listo
     if (authLoading) return
 
+    // 🔒 Escuchar cambios en tiempo real de colección routes
     const unsubscribe = onSnapshot(collection(db, 'routes'), (snapshot) => {
+      // 🎯 Procesar documentos de rutas principales
       const mainRoutes = snapshot.docs.map(processRouteDoc).filter(Boolean)
 
       // 🔥 Crear sub-rutas para cada ruta con collapse
       const subRoutes = mainRoutes.flatMap(createSubRoutes)
 
-      // 🎯 Combinar rutas principales y sub-rutas
+      // � Combinar rutas principales y sub-rutas
       const allRoutes = [...mainRoutes, ...subRoutes]
 
       setRoutes(allRoutes)
@@ -116,7 +149,15 @@ export default function useDynamicRoutes() {
   return { routes, loading }
 }
 
-// 🎯 Hook especializado para el sidebar (SÍ filtra por permisos)
+/**
+ * 🦌 Rutas para Sidebar
+ *
+ * Hook especializado que filtra rutas por permisos para mostrar en sidebar
+ *
+ * @returns {Object} {sidebarRoutes} - Rutas filtradas para navegación
+ *
+ * 🪶 Solo muestra los caminos que el scout puede recorrer
+ */
 export function useSidebarRoutes() {
   const { routes } = useDynamicRoutes()
   const { roles, permissions } = useAuth()
