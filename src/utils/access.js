@@ -20,7 +20,7 @@ export function canAccess({
 }) {
   // 🦌 Super usuario tiene acceso total (para emergencias/administración)
   if (userRoles.includes('super')) {
-    console.log('🔑 SUPER ACCESS GRANTED')
+    console.log('La magía de Kudu permite el acceso total al super usuario.')
     return true
   }
 
@@ -41,10 +41,6 @@ export function canAccess({
         ))
 
   const accessGranted = hasAllRequiredRoles && hasRequiredPermissions
-
-  console.log(`🎯 Roles válidos: ${hasAllRequiredRoles}`)
-  console.log(`⚡ Permisos válidos: ${hasRequiredPermissions}`)
-  console.log(`\n🔑 ACCESS ${accessGranted ? 'GRANTED\n' : 'DENIED\n'}`)
 
   if (!accessGranted) {
     if (!hasAllRequiredRoles) {

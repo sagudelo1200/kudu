@@ -23,7 +23,6 @@ export default function ProtectedRoute({
     return <Navigate to='/auth/login' state={{ from: location }} replace />
   }
 
-  console.log(`\n🛡️ <ProtectedRoute /> validando: ${location.pathname}`)
   // Usar la función canAccess centralizada para verificar permisos
   const hasAccess = canAccess({
     userRoles: roles,
@@ -38,6 +37,5 @@ export default function ProtectedRoute({
     return <Navigate to='/unauthorized' replace />
   }
 
-  console.log(`✅ Acceso CONCEDIDO a: ${location.pathname}`)
   return children
 }

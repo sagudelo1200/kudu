@@ -10,7 +10,7 @@ import MDInput from 'components/MDInput'
 import MDButton from 'components/MDButton'
 
 function Login() {
-  const { login, logout } = useAuth()
+  const { login } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -25,7 +25,6 @@ function Login() {
     setError(null)
     try {
       await login(email, password)
-      console.log('🔑 Sesión iniciada correctamente')
 
       // Redirigir a la ruta original o a /kudu por defecto
       const from = location.state?.from?.pathname || '/kudu'
@@ -35,16 +34,6 @@ function Login() {
     } finally {
       setLoading(false)
     }
-  }
-
-  function handleLogout() {
-    logout()
-      .then(() => {
-        console.log('🔒 Sesión cerrada correctamente')
-      })
-      .catch((error) => {
-        console.error('❌ Error al cerrar sesión', error)
-      })
   }
 
   return (

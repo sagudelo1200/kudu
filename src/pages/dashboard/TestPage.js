@@ -2,8 +2,6 @@ import MDBox from 'components/MDBox'
 import MDTypography from 'components/MDTypography'
 
 function TestPage() {
-  console.log('🎯 TestPage component renderizado!')
-
   return (
     <MDBox py={3}>
       <MDTypography variant='h4' color='success'>
