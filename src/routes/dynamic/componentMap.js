@@ -6,6 +6,7 @@ import AdminUsuariosPage from 'pages/admin/AdminUsuariosPage'
 import AdminRolesPage from 'pages/admin/AdminRolesPage'
 import AdminPermisosPage from 'pages/admin/AdminPermisosPage'
 import Unauthorized from 'pages/Unauthorized'
+import DefaultPage from 'pages/DefaultPage'
 
 const componentMap = {
   KuduDashboard,
@@ -16,6 +17,7 @@ const componentMap = {
   AdminRolesPage,
   AdminPermisosPage,
   Unauthorized,
+  DefaultPage,
 }
 
 export default componentMap

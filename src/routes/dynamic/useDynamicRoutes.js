@@ -22,9 +22,9 @@ function createSubRoutes(parentRoute) {
 
   return parentRoute.collapse.map((subRoute) => {
     const Layout =
-      layoutMap[parentRoute.layout?.toLowerCase()] || layoutMap['dashboard']
+      layoutMap[parentRoute.layout?.toLowerCase()] || layoutMap['kudu']
     const Component =
-      componentMap[subRoute.component] || componentMap['TestPage']
+      componentMap[subRoute.component] || componentMap['DefaultPage']
 
     return {
       path: subRoute.route,
