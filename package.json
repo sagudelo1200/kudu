@@ -1,7 +1,7 @@
 {
   "name": "kudu",
   "version": "1.0.0",
-  "homepage": "https://sagudelo1200.github.io/kudu",
+  "_homepage_for_github_pages": "https://sagudelo1200.github.io/kudu",
   "private": true,
   "author": "Santiago Agudelo",
   "description": "La herramienta scout que responde al llamado de la organización",
@@ -57,7 +57,9 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "seed": "node seed/seed.js"
+    "seed": "node seed/seed.js",
+    "build:local": "bash switch-to-local.sh && npm run build",
+    "build:github": "bash switch-to-github.sh && npm run build && npm run deploy"
   },
   "eslintConfig": {
     "extends": [
@@ -89,5 +91,6 @@
   },
   "overrides": {
     "svgo": "3.0.2"
-  }
+  },
+  "homepage": "https://sagudelo1200.github.io/kudu"
 }

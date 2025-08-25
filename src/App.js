@@ -11,6 +11,7 @@ import authRoutes from 'routes/static/auth.routes'
 
 // 🧩 Extras
 import LoadingPage from 'components/LoadingPage'
+import PWAInstallPrompt from 'components/PWAInstallPrompt'
 
 /**
  * 🦌 App Principal
@@ -76,33 +77,12 @@ export default function App() {
   if (isLoading) return <LoadingPage />
 
   return (
-    <Routes>
-      {/* 📌 Rutas públicas - acceso sin autenticación */}
-      {authRoutes.map((route) => (
-        <Route key={route.path} path={route.path} element={route.element}>
-          {route.children?.map((child) => (
-            <Route key={child.path} path={child.path} element={child.element} />
-          ))}
-        </Route>
-      ))}
-
-      {/* 🔐 Rutas protegidas - solo scouts autenticados */}
-      {routes.map(
-        ({ path, element, children, requiredRoles, requiredPermissions }) => (
-          <Route
-            key={path}
-            path={path}
-            element={
-              <ProtectedRoute
-                requiredRoles={requiredRoles}
-                requiredPermissions={requiredPermissions}
-                path={path}
-              >
-                {element}
-              </ProtectedRoute>
-            }
-          >
-            {children?.map((child) => (
+    <>
+      <Routes>
+        {/* 📌 Rutas públicas - acceso sin autenticación */}
+        {authRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element}>
+            {route.children?.map((child) => (
               <Route
                 key={child.path}
                 path={child.path}
@@ -110,14 +90,50 @@ export default function App() {
               />
             ))}
           </Route>
-        )
-      )}
+        ))}
 
-      {/* 🚪 Redirección inteligente raíz */}
-      <Route path='/' element={<Navigate to={getSmartRedirect()} replace />} />
+        {/* 🔐 Rutas protegidas - solo scouts autenticados */}
+        {routes.map(
+          ({ path, element, children, requiredRoles, requiredPermissions }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                <ProtectedRoute
+                  requiredRoles={requiredRoles}
+                  requiredPermissions={requiredPermissions}
+                  path={path}
+                >
+                  {element}
+                </ProtectedRoute>
+              }
+            >
+              {children?.map((child) => (
+                <Route
+                  key={child.path}
+                  path={child.path}
+                  element={child.element}
+                />
+              ))}
+            </Route>
+          )
+        )}
 
-      {/* 🚪 Fallback inteligente - guía a scouts perdidos */}
-      <Route path='*' element={<Navigate to={getSmartRedirect()} replace />} />
-    </Routes>
+        {/* 🚪 Redirección inteligente raíz */}
+        <Route
+          path='/'
+          element={<Navigate to={getSmartRedirect()} replace />}
+        />
+
+        {/* 🚪 Fallback inteligente - guía a scouts perdidos */}
+        <Route
+          path='*'
+          element={<Navigate to={getSmartRedirect()} replace />}
+        />
+      </Routes>
+
+      {/* 📱 PWA Install Prompt */}
+      <PWAInstallPrompt />
+    </>
   )
 }
