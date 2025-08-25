@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/kudu/static/js/main.a64dc1f9.js",
+    "main.js": "/kudu/static/js/main.1164ceef.js",
     "static/media/logo-ct-dark.png": "/kudu/static/media/logo-ct-dark.b4b6ae2a87578633001d.png",
     "static/media/logo-ct.png": "/kudu/static/media/logo-ct.b4b6ae2a87578633001d.png",
     "index.html": "/kudu/index.html",
-    "main.a64dc1f9.js.map": "/kudu/static/js/main.a64dc1f9.js.map"
+    "main.1164ceef.js.map": "/kudu/static/js/main.1164ceef.js.map"
   },
   "entrypoints": [
-    "static/js/main.a64dc1f9.js"
+    "static/js/main.1164ceef.js"
   ]
 }
